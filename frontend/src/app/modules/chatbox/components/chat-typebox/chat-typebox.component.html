@@ -1,0 +1,21 @@
+<div class="card">
+  <div class="topButton">
+    <app-linear-button
+      class="linearButton"
+      [items]="linearButtonItems"
+      [direction]="linearButtonDir"
+    ></app-linear-button>
+  </div>
+  <form [formGroup]="formGroup" class="form-container">
+    <textarea
+      class="textbox"
+      rows="3"
+      cols="30"
+      pInputTextarea
+      formControlName="text"
+    ></textarea>
+    <div class="buttonContainer">
+      <p-button icon="pi pi-check" />
+    </div>
+  </form>
+</div>

@@ -1,0 +1,48 @@
+// Basic styles
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%; // Ensure body takes full height
+}
+
+.header {
+    background-color: #4CAF50; // Header color
+    color: white; // Text color
+    text-align: center;
+    padding: 20px; // Padding for the header
+    height: 10%; // Set header height (adjustable)
+}
+
+.container {
+    display: flex; // Use flexbox for layout
+    height: 90%; // Remaining height for the columns
+
+    @media (max-width: 768px) {
+        flex-direction: column; // Stack columns on small screens
+    }
+}
+
+.column {
+    flex: 1; // Each column takes equal space
+    padding: 20px; // Padding for the columns
+    box-sizing: border-box; // Include padding in width calculations
+
+    // Adjust background colors for visualization
+    &.column-left {
+        background-color: #f1f1f1; // Left column color
+    }
+
+    &.column-right {
+        background-color: #e7e7e7; // Right column color
+    }
+
+    @media (max-width: 768px) {
+        flex: none; // Reset flex for columns to stack
+        width: 100%; // Full width for smaller screens
+    }
+}
+
+.column-text {
+    text-align: center; // Center text in columns
+    font-size: 1.2em; // Increase font size
+}

@@ -1,5 +1,6 @@
 package com.chatapp.messaging.domain.message.aggregate;
 
+import com.chatapp.conversation.domain.Conversation;
 import com.chatapp.shared.error.domain.Assert;
 
 import java.util.List;

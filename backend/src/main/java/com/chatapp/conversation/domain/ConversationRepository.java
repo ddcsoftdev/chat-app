@@ -1,6 +1,7 @@
-package com.chatapp.messaging.domain.message.repository;
+package com.chatapp.conversation.domain;
 
-import com.chatapp.messaging.domain.message.aggregate.Conversation;
+import com.chatapp.conversation.domain.Conversation;
+
 import com.chatapp.messaging.domain.message.aggregate.ConversationToCreate;
 import com.chatapp.messaging.domain.message.vo.ConversationPublicId;
 import com.chatapp.messaging.domain.user.aggregate.User;
@@ -27,4 +28,3 @@ public interface ConversationRepository {
 
     Optional<Conversation> getOneByPublicId(ConversationPublicId conversationPublicId);
 }
-

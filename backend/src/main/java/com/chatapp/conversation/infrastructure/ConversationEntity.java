@@ -1,10 +1,10 @@
 package com.chatapp.conversation.infrastructure;
 
-import com.chatapp.infrastructure.secundary.entity.ConversationEntityBuilder;
+import com.chatapp.conversation.infrastructure.ConversationEntityBuilder;
 import com.chatapp.infrastructure.secundary.entity.MessageEntity;
 import com.chatapp.infrastructure.secundary.entity.UserEntity;
-import com.chatapp.messaging.domain.message.aggregate.Conversation;
-import com.chatapp.messaging.domain.message.aggregate.ConversationBuilder;
+import com.chatapp.conversation.domain.Conversation;
+import com.chatapp.conversation.domain.ConversationBuilder;
 import com.chatapp.messaging.domain.message.aggregate.ConversationToCreate;
 import com.chatapp.messaging.domain.message.vo.ConversationName;
 import com.chatapp.messaging.domain.message.vo.ConversationPublicId;
@@ -60,7 +60,7 @@ public class ConversationEntity extends AbstractAuditingEntity<Long> {
     }
 
 
-    public static com.chatapp.infrastructure.secundary.entity.ConversationEntity from(Conversation conversation) {
+    public static ConversationEntity from(Conversation conversation) {
         ConversationEntityBuilder conversationEntityBuilder = ConversationEntityBuilder.conversationEntity();
 
         if (conversation.getDbId() != null) {
@@ -86,7 +86,7 @@ public class ConversationEntity extends AbstractAuditingEntity<Long> {
         return conversationEntityBuilder.build();
     }
 
-    public static Conversation toDomain(com.chatapp.infrastructure.secundary.entity.ConversationEntity conversation) {
+    public static Conversation toDomain(ConversationEntity conversation) {
         ConversationBuilder conversationEntityBuilder = ConversationBuilder
                 .conversation()
                 .conversationPublicId(new ConversationPublicId(conversation.getPublicId()))
@@ -101,7 +101,7 @@ public class ConversationEntity extends AbstractAuditingEntity<Long> {
         return conversationEntityBuilder.build();
     }
 
-    public static com.chatapp.infrastructure.secundary.entity.ConversationEntity from(ConversationToCreate conversation) {
+    public static ConversationEntity from(ConversationToCreate conversation) {
         ConversationEntityBuilder conversationEntityBuilder = ConversationEntityBuilder.conversationEntity();
 
         if (conversation.getName() != null) {

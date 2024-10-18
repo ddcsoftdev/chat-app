@@ -1,8 +1,8 @@
 package com.chatapp.messaging.domain.message.service;
 
-import com.chatapp.messaging.domain.message.aggregate.Conversation;
+import com.chatapp.conversation.domain.Conversation;
+import com.chatapp.conversation.domain.ConversationRepository;
 import com.chatapp.messaging.domain.message.aggregate.ConversationToCreate;
-import com.chatapp.messaging.domain.message.repository.ConversationRepository;
 import com.chatapp.messaging.domain.user.aggregate.User;
 import com.chatapp.messaging.domain.user.service.UserReader;
 import com.chatapp.messaging.domain.user.vo.UserPublicId;

@@ -1,6 +1,6 @@
 package com.chatapp.messaging.domain.message.service;
 
-import com.chatapp.messaging.domain.message.aggregate.Conversation;
+import com.chatapp.conversation.domain.Conversation;
 import com.chatapp.messaging.domain.message.aggregate.Message;
 import com.chatapp.messaging.domain.message.aggregate.MessageBuilder;
 import com.chatapp.messaging.domain.message.aggregate.MessageSendNew;

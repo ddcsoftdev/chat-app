@@ -1,8 +1,8 @@
 package com.chatapp.messaging.application;
 
+import com.chatapp.conversation.domain.ConversationRepository;
 import com.chatapp.messaging.domain.message.aggregate.Message;
 import com.chatapp.messaging.domain.message.aggregate.MessageSendNew;
-import com.chatapp.messaging.domain.message.repository.ConversationRepository;
 import com.chatapp.messaging.domain.message.repository.MessageRepository;
 import com.chatapp.messaging.domain.message.service.ConversationReader;
 import com.chatapp.messaging.domain.message.service.MessageChangeNotifier;

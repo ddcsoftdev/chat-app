@@ -1,9 +1,8 @@
 package com.chatapp.conversation.infrastructure;
 
-import com.chatapp.conversation.infrastructure.ConversationDTO;
+import com.chatapp.conversation.domain.Conversation;
 import com.chatapp.infrastructure.primary.conversation.RestUserForConversation;
 import com.chatapp.infrastructure.primary.message.RestMessage;
-import com.chatapp.messaging.domain.message.aggregate.Conversation;
 import org.jilt.Builder;
 
 import java.util.List;

@@ -1,5 +1,6 @@
 package com.chatapp.infrastructure.secundary.entity;
 
+import com.chatapp.conversation.infrastructure.ConversationEntity;
 import com.chatapp.messaging.domain.message.aggregate.Message;
 import com.chatapp.messaging.domain.message.aggregate.MessageBuilder;
 import com.chatapp.messaging.domain.message.vo.*;

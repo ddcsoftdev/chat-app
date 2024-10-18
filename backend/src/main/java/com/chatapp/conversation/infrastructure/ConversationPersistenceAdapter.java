@@ -1,10 +1,9 @@
-package com.chatapp.infrastructure.secundary.repository;
+package com.chatapp.conversation.infrastructure;
 
-import com.chatapp.infrastructure.secundary.entity.ConversationEntity;
+import com.chatapp.conversation.domain.Conversation;
+import com.chatapp.conversation.domain.ConversationRepository;
 import com.chatapp.infrastructure.secundary.entity.UserEntity;
-import com.chatapp.messaging.domain.message.aggregate.Conversation;
 import com.chatapp.messaging.domain.message.aggregate.ConversationToCreate;
-import com.chatapp.messaging.domain.message.repository.ConversationRepository;
 import com.chatapp.messaging.domain.message.vo.ConversationPublicId;
 import com.chatapp.messaging.domain.user.aggregate.User;
 import com.chatapp.messaging.domain.user.vo.UserPublicId;
@@ -17,19 +16,19 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public class SpringDataConversationRepository implements ConversationRepository {
+public class ConversationPersistenceAdapter implements ConversationRepository {
 
     private final JpaConversationRepository jpaConversationRepository;
 
-    public SpringDataConversationRepository(JpaConversationRepository jpaConversationRepository) {
+    public ConversationPersistenceAdapter(JpaConversationRepository jpaConversationRepository) {
         this.jpaConversationRepository = jpaConversationRepository;
     }
 
     @Override
     public Conversation save(ConversationToCreate conversation, List<User> members) {
-        ConversationEntity newConversatioEntity = ConversationEntity.from(conversation);
-        newConversatioEntity.setUsers(UserEntity.from(members));
-        ConversationEntity newConversationSaved = jpaConversationRepository.saveAndFlush(newConversatioEntity);
+        ConversationEntity newConversationEntity = ConversationEntity.from(conversation);
+        newConversationEntity.setUsers(UserEntity.from(members));
+        ConversationEntity newConversationSaved = jpaConversationRepository.saveAndFlush(newConversationEntity);
         return ConversationEntity.toDomain(newConversationSaved);
     }
 

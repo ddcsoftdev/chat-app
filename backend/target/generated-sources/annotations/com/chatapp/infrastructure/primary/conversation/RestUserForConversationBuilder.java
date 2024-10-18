@@ -46,7 +46,7 @@ public class RestUserForConversationBuilder {
     return this;
   }
 
-  public RestUserForConversation build() {
-    return new RestUserForConversation(lastName, firstName, publicId, imageUrl, lastSeen);
+  public UserConversationDTO build() {
+    return new UserConversationDTO(lastName, firstName, publicId, imageUrl, lastSeen);
   }
 }

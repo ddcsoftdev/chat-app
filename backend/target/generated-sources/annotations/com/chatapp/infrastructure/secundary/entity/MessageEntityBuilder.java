@@ -1,6 +1,6 @@
 package com.chatapp.infrastructure.secundary.entity;
 
-import com.chatapp.conversation.infrastructure.ConversationEntity;
+import com.chatapp.conversation.infrastructure.entity.ConversationEntity;
 import com.chatapp.messaging.domain.message.vo.MessageSendState;
 import com.chatapp.messaging.domain.message.vo.MessageType;
 import java.lang.Long;

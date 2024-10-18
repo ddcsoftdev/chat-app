@@ -12,7 +12,7 @@ public class RestConversationBuilder {
 
   private String name;
 
-  private List<RestUserForConversation> members;
+  private List<UserConversationDTO> members;
 
   private List<RestMessage> messages;
 
@@ -30,7 +30,7 @@ public class RestConversationBuilder {
     return this;
   }
 
-  public RestConversationBuilder members(List<RestUserForConversation> members) {
+  public RestConversationBuilder members(List<UserConversationDTO> members) {
     this.members = members;
     return this;
   }

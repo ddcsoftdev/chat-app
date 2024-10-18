@@ -1,6 +1,6 @@
 package com.chatapp.messaging.domain.message.repository;
 
-import com.chatapp.conversation.domain.Conversation;
+import com.chatapp.conversation.domain.model.Conversation;
 import com.chatapp.messaging.domain.message.aggregate.Message;
 import com.chatapp.messaging.domain.message.vo.ConversationPublicId;
 import com.chatapp.messaging.domain.message.vo.MessageSendState;

@@ -1,7 +1,6 @@
 package com.chatapp.conversation;
 
-import com.chatapp.conversation.infrastructure.ConversationDTO;
-import com.chatapp.infrastructure.primary.conversation.RestUserForConversation;
+import com.chatapp.conversation.infrastructure.dto.ConversationDTO;
 import com.chatapp.infrastructure.primary.message.RestMessage;
 import java.lang.String;
 import java.util.List;
@@ -14,7 +13,7 @@ public class ConversationDTOBuilder {
 
   private String name;
 
-  private List<RestUserForConversation> members;
+  private List<UserConversationDTO> members;
 
   private List<RestMessage> messages;
 
@@ -32,7 +31,7 @@ public class ConversationDTOBuilder {
     return this;
   }
 
-  public ConversationDTOBuilder members(List<RestUserForConversation> members) {
+  public ConversationDTOBuilder members(List<UserConversationDTO> members) {
     this.members = members;
     return this;
   }

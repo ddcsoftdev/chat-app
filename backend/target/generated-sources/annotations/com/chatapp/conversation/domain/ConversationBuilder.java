@@ -1,5 +1,6 @@
 package com.chatapp.conversation.domain;
 
+import com.chatapp.conversation.domain.model.Conversation;
 import com.chatapp.messaging.domain.message.aggregate.Message;
 import com.chatapp.messaging.domain.message.vo.ConversationName;
 import com.chatapp.messaging.domain.message.vo.ConversationPublicId;

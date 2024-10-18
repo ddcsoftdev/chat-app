@@ -1,10 +1,10 @@
 package com.chatapp.messaging.application;
 
-import com.chatapp.conversation.domain.ConversationRepository;
+import com.chatapp.conversation.application.service.ConversationReaderService;
+import com.chatapp.conversation.domain.repository.ConversationRepository;
 import com.chatapp.messaging.domain.message.aggregate.Message;
 import com.chatapp.messaging.domain.message.aggregate.MessageSendNew;
 import com.chatapp.messaging.domain.message.repository.MessageRepository;
-import com.chatapp.messaging.domain.message.service.ConversationReader;
 import com.chatapp.messaging.domain.message.service.MessageChangeNotifier;
 import com.chatapp.messaging.domain.message.service.MessageCreator;
 import com.chatapp.messaging.domain.user.aggregate.User;
@@ -26,7 +26,7 @@ public class MessageApplicationService {
 
     public MessageApplicationService(MessageRepository messageRepository, UserRepository userRepository,
                                      ConversationRepository conversationRepository, MessageChangeNotifier messageChangeNotifier) {
-        ConversationReader conversationReader = new ConversationReader(conversationRepository);
+        ConversationReaderService conversationReader = new ConversationReaderService(conversationRepository);
         this.messageCreator = new MessageCreator(messageRepository, messageChangeNotifier, conversationReader);
         this.userReader = new UserReader(userRepository);
     }

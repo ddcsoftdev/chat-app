@@ -1,6 +1,7 @@
 package com.chatapp.messaging.domain.message.service;
 
-import com.chatapp.conversation.domain.Conversation;
+import com.chatapp.conversation.application.service.ConversationReaderService;
+import com.chatapp.conversation.domain.model.Conversation;
 import com.chatapp.messaging.domain.message.aggregate.Message;
 import com.chatapp.messaging.domain.message.aggregate.MessageBuilder;
 import com.chatapp.messaging.domain.message.aggregate.MessageSendNew;
@@ -19,10 +20,10 @@ public class MessageCreator {
 
     private final MessageRepository messageRepository;
     private final MessageChangeNotifier messageChangeNotifier;
-    private final ConversationReader conversationReader;
+    private final ConversationReaderService conversationReader;
 
     public MessageCreator(MessageRepository messageRepository, MessageChangeNotifier messageChangeNotifier,
-                          ConversationReader conversationReader) {
+                          ConversationReaderService conversationReader) {
         this.messageRepository = messageRepository;
         this.messageChangeNotifier = messageChangeNotifier;
         this.conversationReader = conversationReader;

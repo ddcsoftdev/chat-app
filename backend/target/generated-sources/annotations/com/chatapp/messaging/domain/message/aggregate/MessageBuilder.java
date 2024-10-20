@@ -5,7 +5,7 @@ import com.chatapp.messaging.domain.message.vo.MessageContent;
 import com.chatapp.messaging.domain.message.vo.MessagePublicId;
 import com.chatapp.messaging.domain.message.vo.MessageSendState;
 import com.chatapp.messaging.domain.message.vo.MessageSentTime;
-import com.chatapp.messaging.domain.user.vo.UserPublicId;
+import com.chatapp.user.domain.vo.UserPublicId;
 import javax.annotation.processing.Generated;
 
 @Generated("Jilt-1.5")

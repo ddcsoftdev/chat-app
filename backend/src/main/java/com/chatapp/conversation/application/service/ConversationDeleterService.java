@@ -1,11 +1,11 @@
 package com.chatapp.conversation.application.service;
 
-import com.chatapp.conversation.domain.model.Conversation;
+import com.chatapp.conversation.domain.aggregate.Conversation;
 import com.chatapp.conversation.domain.repository.ConversationRepository;
 import com.chatapp.messaging.domain.message.service.MessageChangeNotifier;
 import com.chatapp.messaging.domain.message.vo.ConversationPublicId;
-import com.chatapp.messaging.domain.user.aggregate.User;
 import com.chatapp.shared.service.State;
+import com.chatapp.user.domain.aggregate.User;
 
 import java.util.Optional;
 

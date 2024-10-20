@@ -1,7 +1,7 @@
 package com.chatapp.messaging.domain.message.service;
 
 import com.chatapp.conversation.application.service.ConversationReaderService;
-import com.chatapp.conversation.domain.model.Conversation;
+import com.chatapp.conversation.domain.aggregate.Conversation;
 import com.chatapp.messaging.domain.message.aggregate.Message;
 import com.chatapp.messaging.domain.message.aggregate.MessageBuilder;
 import com.chatapp.messaging.domain.message.aggregate.MessageSendNew;
@@ -9,8 +9,8 @@ import com.chatapp.messaging.domain.message.repository.MessageRepository;
 import com.chatapp.messaging.domain.message.vo.MessagePublicId;
 import com.chatapp.messaging.domain.message.vo.MessageSendState;
 import com.chatapp.messaging.domain.message.vo.MessageSentTime;
-import com.chatapp.messaging.domain.user.aggregate.User;
 import com.chatapp.shared.service.State;
+import com.chatapp.user.domain.aggregate.User;
 
 import java.time.Instant;
 import java.util.Optional;

@@ -1,6 +1,6 @@
 package com.chatapp.infrastructure.secundary.repository;
 
-import com.chatapp.conversation.domain.model.Conversation;
+import com.chatapp.conversation.domain.aggregate.Conversation;
 import com.chatapp.conversation.infrastructure.entity.ConversationEntity;
 import com.chatapp.infrastructure.secundary.entity.MessageEntity;
 import com.chatapp.infrastructure.secundary.entity.UserEntity;
@@ -9,8 +9,8 @@ import com.chatapp.messaging.domain.message.repository.MessageRepository;
 import com.chatapp.messaging.domain.message.vo.ConversationPublicId;
 import com.chatapp.messaging.domain.message.vo.MessageSendState;
 import com.chatapp.messaging.domain.message.vo.MessageType;
-import com.chatapp.messaging.domain.user.aggregate.User;
-import com.chatapp.messaging.domain.user.vo.UserPublicId;
+import com.chatapp.user.domain.aggregate.User;
+import com.chatapp.user.domain.vo.UserPublicId;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

@@ -1,7 +1,7 @@
 package com.chatapp.messaging.domain.message.aggregate;
 
 import com.chatapp.messaging.domain.message.vo.ConversationName;
-import com.chatapp.messaging.domain.user.vo.UserPublicId;
+import com.chatapp.user.domain.vo.UserPublicId;
 import java.util.Set;
 import javax.annotation.processing.Generated;
 

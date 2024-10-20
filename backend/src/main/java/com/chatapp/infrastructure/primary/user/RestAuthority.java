@@ -1,6 +1,6 @@
 package com.chatapp.infrastructure.primary.user;
 
-import com.chatapp.messaging.domain.user.aggregate.Authority;
+import com.chatapp.user.domain.aggregate.Authority;
 import org.jilt.Builder;
 
 import java.util.Set;
@@ -16,4 +16,3 @@ public record RestAuthority(String name) {
     }
 
 }
-

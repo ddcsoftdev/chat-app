@@ -1,9 +1,9 @@
 package com.chatapp.conversation.infrastructure.controller;
 
 import com.chatapp.conversation.application.service.ConversationManagementService;
-import com.chatapp.conversation.domain.model.Conversation;
-import com.chatapp.conversation.infrastructure.dto.ConversationCreationDTO;
-import com.chatapp.conversation.infrastructure.dto.ConversationDTO;
+import com.chatapp.conversation.domain.aggregate.Conversation;
+import com.chatapp.conversation.infrastructure.dto.ConversationCreationDto;
+import com.chatapp.conversation.infrastructure.dto.ConversationDto;
 import com.chatapp.messaging.domain.message.aggregate.ConversationToCreate;
 import com.chatapp.messaging.domain.message.vo.ConversationPublicId;
 import com.chatapp.shared.service.State;
@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.function.Function;
 
 @RestController
 @RequestMapping("/api/conversations")
@@ -32,19 +33,19 @@ public class ConversationController {
     }
 
     @GetMapping
-    ResponseEntity<List<ConversationDTO>> getAll(Pageable pageable) {
-        List<ConversationDTO> restConversations = conversationsApplicationService.getAllByConnectedUser(pageable)
-                .stream().map(ConversationDTO::from).toList();
+    ResponseEntity<List<ConversationDto>> getAll(Pageable pageable) {
+        List<ConversationDto> restConversations = conversationsApplicationService.getAllByConnectedUser(pageable)
+                .stream().map(ConversationDto::from).toList();
         return ResponseEntity.ok(restConversations);
     }
 
     @PostMapping
-    ResponseEntity<ConversationDTO> create(@RequestBody
-                                           ConversationCreationDTO restConversationToCreate) {
-        ConversationToCreate newConversation = ConversationCreationDTO.toDomain(restConversationToCreate);
+    ResponseEntity<ConversationDto> create(@RequestBody
+                                           ConversationCreationDto restConversationToCreate) {
+        ConversationToCreate newConversation = ConversationCreationDto.toDomain(restConversationToCreate);
         State<Conversation, String> conversationState = conversationsApplicationService.create(newConversation);
         if (conversationState.getStatus().equals(StatusNotification.OK)) {
-            ConversationDTO restConversations = ConversationDTO.from(conversationState.getValue());
+            ConversationDto restConversations = ConversationDto.from(conversationState.getValue());
             return ResponseEntity.ok(restConversations);
         } else {
             ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, "Not allowed to create conversation");
@@ -65,10 +66,10 @@ public class ConversationController {
     }
 
     @GetMapping("/{id}")
-    ResponseEntity<ConversationDTO> getOneById(@RequestParam UUID id) {
-        Optional<ConversationDTO> restConversation = conversationsApplicationService
+    ResponseEntity<ConversationDto> getOneById(@RequestParam UUID id) {
+        Optional<ConversationDto> restConversation = conversationsApplicationService
                 .getOneByConversationId(new ConversationPublicId(id))
-                .map(ConversationDTO::from);
+                .map(ConversationDto::from);
         if (restConversation.isPresent()) {
             return ResponseEntity.ok(restConversation.get());
         } else {

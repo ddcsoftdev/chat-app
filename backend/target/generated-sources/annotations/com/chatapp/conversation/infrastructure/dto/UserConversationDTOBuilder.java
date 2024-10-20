@@ -6,7 +6,7 @@ import java.util.UUID;
 import javax.annotation.processing.Generated;
 
 @Generated("Jilt-1.5")
-public class UserConversationDTOBuilder {
+public class UserConversationDtoBuilder {
   private String lastName;
 
   private String firstName;
@@ -17,36 +17,36 @@ public class UserConversationDTOBuilder {
 
   private Instant lastSeen;
 
-  public static UserConversationDTOBuilder userConversationDTO() {
-    return new UserConversationDTOBuilder();
+  public static UserConversationDtoBuilder userConversationDto() {
+    return new UserConversationDtoBuilder();
   }
 
-  public UserConversationDTOBuilder lastName(String lastName) {
+  public UserConversationDtoBuilder lastName(String lastName) {
     this.lastName = lastName;
     return this;
   }
 
-  public UserConversationDTOBuilder firstName(String firstName) {
+  public UserConversationDtoBuilder firstName(String firstName) {
     this.firstName = firstName;
     return this;
   }
 
-  public UserConversationDTOBuilder publicId(UUID publicId) {
+  public UserConversationDtoBuilder publicId(UUID publicId) {
     this.publicId = publicId;
     return this;
   }
 
-  public UserConversationDTOBuilder imageUrl(String imageUrl) {
+  public UserConversationDtoBuilder imageUrl(String imageUrl) {
     this.imageUrl = imageUrl;
     return this;
   }
 
-  public UserConversationDTOBuilder lastSeen(Instant lastSeen) {
+  public UserConversationDtoBuilder lastSeen(Instant lastSeen) {
     this.lastSeen = lastSeen;
     return this;
   }
 
-  public UserConversationDTO build() {
-    return new UserConversationDTO(lastName, firstName, publicId, imageUrl, lastSeen);
+  public UserConversationDto build() {
+    return new UserConversationDto(lastName, firstName, publicId, imageUrl, lastSeen);
   }
 }

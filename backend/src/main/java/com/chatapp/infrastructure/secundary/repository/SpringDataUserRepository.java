@@ -2,10 +2,10 @@ package com.chatapp.infrastructure.secundary.repository;
 
 import com.chatapp.infrastructure.secundary.entity.UserEntity;
 import com.chatapp.messaging.domain.message.vo.ConversationPublicId;
-import com.chatapp.messaging.domain.user.aggregate.User;
-import com.chatapp.messaging.domain.user.repository.UserRepository;
-import com.chatapp.messaging.domain.user.vo.UserEmail;
-import com.chatapp.messaging.domain.user.vo.UserPublicId;
+import com.chatapp.user.domain.aggregate.User;
+import com.chatapp.user.domain.repository.UserRepository;
+import com.chatapp.user.domain.vo.UserEmail;
+import com.chatapp.user.domain.vo.UserPublicId;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;

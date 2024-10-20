@@ -1,6 +1,6 @@
 package com.chatapp.infrastructure.primary.user;
 
-import com.chatapp.messaging.domain.user.aggregate.User;
+import com.chatapp.user.domain.aggregate.User;
 import org.jilt.Builder;
 
 import java.util.UUID;

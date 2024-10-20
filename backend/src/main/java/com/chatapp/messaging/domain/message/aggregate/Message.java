@@ -1,8 +1,8 @@
 package com.chatapp.messaging.domain.message.aggregate;
 
 import com.chatapp.messaging.domain.message.vo.*;
-import com.chatapp.messaging.domain.user.vo.UserPublicId;
 import com.chatapp.shared.error.domain.Assert;
+import com.chatapp.user.domain.vo.UserPublicId;
 import org.jilt.Builder;
 
 @Builder

@@ -1,10 +1,11 @@
 package com.chatapp.infrastructure.secundary.entity;
 
 import com.chatapp.conversation.infrastructure.entity.ConversationEntity;
-import com.chatapp.messaging.domain.user.aggregate.User;
-import com.chatapp.messaging.domain.user.aggregate.UserBuilder;
-import com.chatapp.messaging.domain.user.vo.*;
+import com.chatapp.user.domain.aggregate.UserBuilder;
+import com.chatapp.user.domain.vo.*;
 import com.chatapp.shared.jpa.AbstractAuditingEntity;
+import com.chatapp.user.domain.aggregate.User;
+import com.chatapp.user.domain.vo.*;
 import jakarta.persistence.*;
 import org.hibernate.annotations.UuidGenerator;
 import org.jilt.Builder;
@@ -115,7 +116,7 @@ public class UserEntity extends AbstractAuditingEntity<Long> {
         return userBuilder
                 .email(new UserEmail(userEntity.getEmail()))
                 .lastName(new UserLastName(userEntity.getLastName()))
-                .firstname(new UserFirstname(userEntity.getFirstName()))
+                .firstname(new UserFirstName(userEntity.getFirstName()))
                 .authorities(AuthorityEntity.toDomain(userEntity.getAuthorities()))
                 .userPublicId(new UserPublicId(userEntity.getPublicId()))
                 .lastModifiedDate(userEntity.getLastModifiedDate())

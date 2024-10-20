@@ -1,8 +1,8 @@
 package com.chatapp.infrastructure.secundary.entity;
 
-import com.chatapp.messaging.domain.user.aggregate.Authority;
-import com.chatapp.messaging.domain.user.aggregate.AuthorityBuilder;
-import com.chatapp.messaging.domain.user.vo.AuthorityName;
+import com.chatapp.user.domain.aggregate.AuthorityBuilder;
+import com.chatapp.user.domain.aggregate.Authority;
+import com.chatapp.user.domain.vo.AuthorityName;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

@@ -7,12 +7,12 @@ import com.chatapp.messaging.domain.message.aggregate.MessageSendNew;
 import com.chatapp.messaging.domain.message.repository.MessageRepository;
 import com.chatapp.messaging.domain.message.service.MessageChangeNotifier;
 import com.chatapp.messaging.domain.message.service.MessageCreator;
-import com.chatapp.messaging.domain.user.aggregate.User;
-import com.chatapp.messaging.domain.user.repository.UserRepository;
-import com.chatapp.messaging.domain.user.service.UserReader;
-import com.chatapp.messaging.domain.user.vo.UserEmail;
 import com.chatapp.shared.authentication.application.AuthenticatedUser;
 import com.chatapp.shared.service.State;
+import com.chatapp.user.application.service.UserReaderService;
+import com.chatapp.user.domain.aggregate.User;
+import com.chatapp.user.domain.repository.UserRepository;
+import com.chatapp.user.domain.vo.UserEmail;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,13 +22,13 @@ import java.util.Optional;
 public class MessageApplicationService {
 
     private final MessageCreator messageCreator;
-    private final UserReader userReader;
+    private final UserReaderService userReader;
 
     public MessageApplicationService(MessageRepository messageRepository, UserRepository userRepository,
                                      ConversationRepository conversationRepository, MessageChangeNotifier messageChangeNotifier) {
         ConversationReaderService conversationReader = new ConversationReaderService(conversationRepository);
         this.messageCreator = new MessageCreator(messageRepository, messageChangeNotifier, conversationReader);
-        this.userReader = new UserReader(userRepository);
+        this.userReader = new UserReaderService(userRepository);
     }
 
     @Transactional

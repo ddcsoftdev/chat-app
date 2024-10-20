@@ -1,16 +1,16 @@
 package com.chatapp.conversation.application.service;
 
-import com.chatapp.conversation.domain.model.Conversation;
+import com.chatapp.conversation.domain.aggregate.Conversation;
 import com.chatapp.conversation.domain.repository.ConversationRepository;
-import com.chatapp.messaging.application.UsersApplicationService;
 import com.chatapp.messaging.domain.message.aggregate.ConversationToCreate;
 import com.chatapp.messaging.domain.message.repository.MessageRepository;
 import com.chatapp.messaging.domain.message.service.*;
 import com.chatapp.messaging.domain.message.vo.ConversationPublicId;
-import com.chatapp.messaging.domain.user.aggregate.User;
-import com.chatapp.messaging.domain.user.repository.UserRepository;
-import com.chatapp.messaging.domain.user.service.UserReader;
 import com.chatapp.shared.service.State;
+import com.chatapp.user.application.service.UserApplicationService;
+import com.chatapp.user.application.service.UserReaderService;
+import com.chatapp.user.domain.aggregate.User;
+import com.chatapp.user.domain.repository.UserRepository;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,15 +24,15 @@ public class ConversationManagementService {
     private final ConversationCreatorService conversationCreator;
     private final ConversationReaderService conversationReader;
     private final ConversationDeleterService conversationDeleter;
-    private final UsersApplicationService usersApplicationService;
+    private final UserApplicationService usersApplicationService;
     private final ConversationViewedService conversationViewed;
 
     public ConversationManagementService(ConversationRepository conversationRepository,
                                            UserRepository userRepository,
                                            MessageChangeNotifier messageChangeNotifier,
                                            MessageRepository messageRepository,
-                                           UsersApplicationService usersApplicationService) {
-        UserReader userReader = new UserReader(userRepository);
+                                         UserApplicationService usersApplicationService) {
+        UserReaderService userReader = new UserReaderService(userRepository);
         this.conversationCreator = new ConversationCreatorService(conversationRepository, userReader);
         this.conversationReader = new ConversationReaderService(conversationRepository);
         this.conversationDeleter = new ConversationDeleterService(conversationRepository, messageChangeNotifier);

@@ -1,11 +1,11 @@
 package com.chatapp.conversation.domain.repository;
 
-import com.chatapp.conversation.domain.model.Conversation;
+import com.chatapp.conversation.domain.aggregate.Conversation;
 
 import com.chatapp.messaging.domain.message.aggregate.ConversationToCreate;
 import com.chatapp.messaging.domain.message.vo.ConversationPublicId;
-import com.chatapp.messaging.domain.user.aggregate.User;
-import com.chatapp.messaging.domain.user.vo.UserPublicId;
+import com.chatapp.user.domain.aggregate.User;
+import com.chatapp.user.domain.vo.UserPublicId;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

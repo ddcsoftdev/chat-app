@@ -1,10 +1,9 @@
 package com.chatapp.conversation.infrastructure.entity;
 
-import com.chatapp.conversation.infrastructure.entity.ConversationEntityBuilder;
 import com.chatapp.infrastructure.secundary.entity.MessageEntity;
 import com.chatapp.infrastructure.secundary.entity.UserEntity;
-import com.chatapp.conversation.domain.model.Conversation;
-import com.chatapp.conversation.domain.model.ConversationBuilder;
+import com.chatapp.conversation.domain.aggregate.Conversation;
+import com.chatapp.conversation.domain.aggregate.ConversationBuilder;
 import com.chatapp.messaging.domain.message.aggregate.ConversationToCreate;
 import com.chatapp.messaging.domain.message.vo.ConversationName;
 import com.chatapp.messaging.domain.message.vo.ConversationPublicId;

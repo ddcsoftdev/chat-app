@@ -1,9 +1,9 @@
 package com.chatapp.infrastructure.secundary.message;
 
-import com.chatapp.messaging.application.UsersApplicationService;
-import com.chatapp.messaging.domain.user.aggregate.User;
-import com.chatapp.messaging.domain.user.vo.UserEmail;
-import com.chatapp.messaging.domain.user.vo.UserPublicId;
+import com.chatapp.user.application.service.UserApplicationService;
+import com.chatapp.user.domain.aggregate.User;
+import com.chatapp.user.domain.vo.UserEmail;
+import com.chatapp.user.domain.vo.UserPublicId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -16,9 +16,9 @@ import java.util.*;
 @Service
 public class NotificationService {
 
-    private final UsersApplicationService usersApplicationService;
+    private final UserApplicationService usersApplicationService;
 
-    public NotificationService(UsersApplicationService usersApplicationService) {
+    public NotificationService(UserApplicationService usersApplicationService) {
         this.usersApplicationService = usersApplicationService;
     }
 

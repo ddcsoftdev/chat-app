@@ -7,40 +7,40 @@ import java.util.UUID;
 import javax.annotation.processing.Generated;
 
 @Generated("Jilt-1.5")
-public class ConversationDTOBuilder {
+public class ConversationDtoBuilder {
   private UUID publicId;
 
   private String name;
 
-  private List<UserConversationDTO> members;
+  private List<UserConversationDto> members;
 
   private List<RestMessage> messages;
 
-  public static ConversationDTOBuilder conversationDTO() {
-    return new ConversationDTOBuilder();
+  public static ConversationDtoBuilder conversationDto() {
+    return new ConversationDtoBuilder();
   }
 
-  public ConversationDTOBuilder publicId(UUID publicId) {
+  public ConversationDtoBuilder publicId(UUID publicId) {
     this.publicId = publicId;
     return this;
   }
 
-  public ConversationDTOBuilder name(String name) {
+  public ConversationDtoBuilder name(String name) {
     this.name = name;
     return this;
   }
 
-  public ConversationDTOBuilder members(List<UserConversationDTO> members) {
+  public ConversationDtoBuilder members(List<UserConversationDto> members) {
     this.members = members;
     return this;
   }
 
-  public ConversationDTOBuilder messages(List<RestMessage> messages) {
+  public ConversationDtoBuilder messages(List<RestMessage> messages) {
     this.messages = messages;
     return this;
   }
 
-  public ConversationDTO build() {
-    return new ConversationDTO(publicId, name, members, messages);
+  public ConversationDto build() {
+    return new ConversationDto(publicId, name, members, messages);
   }
 }

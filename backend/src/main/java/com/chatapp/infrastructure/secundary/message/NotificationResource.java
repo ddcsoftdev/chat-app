@@ -1,7 +1,7 @@
 package com.chatapp.infrastructure.secundary.message;
 
-import com.chatapp.messaging.domain.user.vo.UserEmail;
 import com.chatapp.shared.authentication.application.AuthenticatedUser;
+import com.chatapp.user.domain.vo.UserEmail;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

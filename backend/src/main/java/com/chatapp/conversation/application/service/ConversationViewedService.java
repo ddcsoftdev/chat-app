@@ -6,10 +6,10 @@ import com.chatapp.messaging.domain.message.repository.MessageRepository;
 import com.chatapp.messaging.domain.message.service.MessageChangeNotifier;
 import com.chatapp.messaging.domain.message.vo.ConversationPublicId;
 import com.chatapp.messaging.domain.message.vo.MessageSendState;
-import com.chatapp.messaging.domain.user.aggregate.User;
-import com.chatapp.messaging.domain.user.service.UserReader;
-import com.chatapp.messaging.domain.user.vo.UserPublicId;
 import com.chatapp.shared.service.State;
+import com.chatapp.user.application.service.UserReaderService;
+import com.chatapp.user.domain.aggregate.User;
+import com.chatapp.user.domain.vo.UserPublicId;
 
 import java.util.List;
 
@@ -17,9 +17,9 @@ public class ConversationViewedService {
 
     private final MessageRepository messageRepository;
     private final MessageChangeNotifier messageChangeNotifier;
-    private final UserReader userReader;
+    private final UserReaderService userReader;
 
-    public ConversationViewedService(MessageRepository messageRepository, MessageChangeNotifier messageChangeNotifier, UserReader userReader) {
+    public ConversationViewedService(MessageRepository messageRepository, MessageChangeNotifier messageChangeNotifier, UserReaderService userReader) {
         this.messageRepository = messageRepository;
         this.messageChangeNotifier = messageChangeNotifier;
         this.userReader = userReader;

@@ -1,10 +1,10 @@
 package com.chatapp.user.infrastructure.controller;
 
-import com.chatapp.infrastructure.primary.user.RestSearchUser;
-import com.chatapp.infrastructure.primary.user.RestUser;
 import com.chatapp.user.application.service.UserApplicationService;
 import com.chatapp.user.domain.aggregate.User;
 import com.chatapp.user.domain.vo.UserPublicId;
+import com.chatapp.user.infrastructure.dto.SearchUserDto;
+import com.chatapp.user.infrastructure.dto.UserDto;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
@@ -24,7 +24,6 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
-/*
     private final UserApplicationService usersApplicationService;
 
     public UserController(UserApplicationService usersApplicationService) {
@@ -32,17 +31,17 @@ public class UserController {
     }
 
     @GetMapping("/get-authenticated-user")
-    public ResponseEntity<RestUser> getAuthenticatedUser(@AuthenticationPrincipal Jwt user,
-                                                         @RequestParam boolean forceResync) {
+    public ResponseEntity<UserDto> getAuthenticatedUser(@AuthenticationPrincipal Jwt user,
+                                                        @RequestParam boolean forceResync) {
         User authenticatedUser = usersApplicationService.getAuthenticatedUserWithSync(user, forceResync);
-        RestUser restUser = RestUser.from(authenticatedUser);
-        return ResponseEntity.ok(restUser);
+        UserDto userDto = UserDto.from(authenticatedUser);
+        return ResponseEntity.ok(userDto);
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List<RestSearchUser>> search(Pageable pageable, @RequestParam String query) {
-        List<RestSearchUser> searchResults = usersApplicationService.search(pageable, query)
-                .stream().map(RestSearchUser::from)
+    public ResponseEntity<List<SearchUserDto>> search(Pageable pageable, @RequestParam String query) {
+        List<SearchUserDto> searchResults = usersApplicationService.search(pageable, query)
+                .stream().map(SearchUserDto::from)
                 .toList();
         return ResponseEntity.ok(searchResults);
     }
@@ -57,5 +56,4 @@ public class UserController {
             return ResponseEntity.of(problemDetail).build();
         }
     }
-*/
 }

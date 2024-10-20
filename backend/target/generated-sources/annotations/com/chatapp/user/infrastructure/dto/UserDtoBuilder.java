@@ -1,6 +1,5 @@
 package com.chatapp.user.infrastructure.dto;
 
-import com.chatapp.infrastructure.primary.user.RestAuthority;
 import java.lang.String;
 import java.util.Set;
 import java.util.UUID;
@@ -18,7 +17,7 @@ public class UserDtoBuilder {
 
   private String imageUrl;
 
-  private Set<RestAuthority> authorities;
+  private Set<AuthorityDto> authorities;
 
   public static UserDtoBuilder userDto() {
     return new UserDtoBuilder();
@@ -49,7 +48,7 @@ public class UserDtoBuilder {
     return this;
   }
 
-  public UserDtoBuilder authorities(Set<RestAuthority> authorities) {
+  public UserDtoBuilder authorities(Set<AuthorityDto> authorities) {
     this.authorities = authorities;
     return this;
   }

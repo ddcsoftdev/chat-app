@@ -1,8 +1,5 @@
 package com.chatapp.user.infrastructure.dto;
 
-import com.chatapp.infrastructure.primary.user.RestAuthority;
-import com.chatapp.infrastructure.primary.user.RestUser;
-import com.chatapp.infrastructure.primary.user.RestUserBuilder;
 import com.chatapp.user.domain.aggregate.User;
 import org.jilt.Builder;
 
@@ -15,21 +12,21 @@ public record UserDto(UUID publicId,
                        String lastName,
                        String email,
                        String imageUrl,
-                       Set<RestAuthority> authorities) {
+                       Set<AuthorityDto> authorities) {
 
-    static RestUser from(User user) {
-        RestUserBuilder restUserBuilder = RestUserBuilder.restUser();
+    public static UserDto from(User user) {
+        UserDtoBuilder userDtoBuilder = UserDtoBuilder.userDto();
 
         if(user.getImageUrl() != null) {
-            restUserBuilder.imageUrl(user.getImageUrl().value());
+            userDtoBuilder.imageUrl(user.getImageUrl().value());
         }
 
-        return restUserBuilder
+        return userDtoBuilder
                 .email(user.getEmail().value())
                 .firstName(user.getFirstname().value())
                 .lastName(user.getLastName().value())
                 .publicId(user.getUserPublicId().value())
-                .authorities(RestAuthority.fromSet(user.getAuthorities()))
+                .authorities(AuthorityDto.fromSet(user.getAuthorities()))
                 .build();
     }
 }

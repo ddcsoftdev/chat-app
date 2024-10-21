@@ -4,7 +4,7 @@ import com.chatapp.conversation.domain.aggregate.Conversation;
 import com.chatapp.conversation.domain.repository.ConversationRepository;
 import com.chatapp.conversation.infrastructure.entity.ConversationEntity;
 import com.chatapp.user.infrastructure.entity.UserEntity;
-import com.chatapp.messaging.domain.message.aggregate.ConversationToCreate;
+import com.chatapp.conversation.domain.vo.CreateConversation;
 import com.chatapp.conversation.domain.vo.ConversationPublicId;
 import com.chatapp.user.domain.aggregate.User;
 import com.chatapp.user.domain.vo.UserPublicId;
@@ -26,7 +26,7 @@ public class ConversationPersistenceAdapter implements ConversationRepository {
     }
 
     @Override
-    public Conversation save(ConversationToCreate conversation, List<User> members) {
+    public Conversation save(CreateConversation conversation, List<User> members) {
         ConversationEntity newConversationEntity = ConversationEntity.from(conversation);
         newConversationEntity.setUsers(UserEntity.from(members));
         ConversationEntity newConversationSaved = jpaConversationRepository.saveAndFlush(newConversationEntity);

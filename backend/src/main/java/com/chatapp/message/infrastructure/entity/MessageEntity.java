@@ -2,7 +2,7 @@ package com.chatapp.message.infrastructure.entity;
 
 import com.chatapp.conversation.domain.vo.ConversationPublicId;
 import com.chatapp.conversation.infrastructure.entity.ConversationEntity;
-import com.chatapp.infrastructure.secundary.entity.MessageContentBinaryEntity;
+import com.chatapp.message.infrastructure.entity.MessageContentBinaryEntity;
 import com.chatapp.message.domain.aggregate.Message;
 import com.chatapp.message.domain.vo.*;
 import com.chatapp.message.domain.aggregate.MessageBuilder;

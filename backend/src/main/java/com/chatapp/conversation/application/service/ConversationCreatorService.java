@@ -2,7 +2,7 @@ package com.chatapp.conversation.application.service;
 
 import com.chatapp.conversation.domain.aggregate.Conversation;
 import com.chatapp.conversation.domain.repository.ConversationRepository;
-import com.chatapp.messaging.domain.message.aggregate.ConversationToCreate;
+import com.chatapp.conversation.domain.vo.CreateConversation;
 import com.chatapp.shared.service.State;
 import com.chatapp.user.application.service.UserReaderService;
 import com.chatapp.user.domain.aggregate.User;
@@ -22,7 +22,7 @@ public class ConversationCreatorService {
     }
 
 
-    public State<Conversation, String> create(ConversationToCreate newConversation, User authenticatedUser) {
+    public State<Conversation, String> create(CreateConversation newConversation, User authenticatedUser) {
         newConversation.getMembers().add(authenticatedUser.getUserPublicId());
         List<User> members = userReader.getUsersByPublicId(newConversation.getMembers());
         List<UserPublicId> membersUuids = members.stream().map(User::getUserPublicId).toList();

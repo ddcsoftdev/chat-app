@@ -1,10 +1,10 @@
 package com.chatapp.conversation.infrastructure.entity;
 
+import com.chatapp.conversation.domain.vo.CreateConversation;
 import com.chatapp.message.infrastructure.entity.MessageEntity;
 import com.chatapp.user.infrastructure.entity.UserEntity;
 import com.chatapp.conversation.domain.aggregate.Conversation;
 import com.chatapp.conversation.domain.aggregate.ConversationBuilder;
-import com.chatapp.messaging.domain.message.aggregate.ConversationToCreate;
 import com.chatapp.conversation.domain.vo.ConversationName;
 import com.chatapp.conversation.domain.vo.ConversationPublicId;
 import com.chatapp.shared.jpa.AbstractAuditingEntity;
@@ -100,7 +100,7 @@ public class ConversationEntity extends AbstractAuditingEntity<Long> {
         return conversationEntityBuilder.build();
     }
 
-    public static ConversationEntity from(ConversationToCreate conversation) {
+    public static ConversationEntity from(CreateConversation conversation) {
         ConversationEntityBuilder conversationEntityBuilder = ConversationEntityBuilder.conversationEntity();
 
         if (conversation.getName() != null) {

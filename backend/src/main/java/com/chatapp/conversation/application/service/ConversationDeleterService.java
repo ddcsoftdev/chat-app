@@ -2,7 +2,7 @@ package com.chatapp.conversation.application.service;
 
 import com.chatapp.conversation.domain.aggregate.Conversation;
 import com.chatapp.conversation.domain.repository.ConversationRepository;
-import com.chatapp.messaging.domain.message.service.MessageChangeNotifier;
+import com.chatapp.message.application.service.MessageChangeNotifier;
 import com.chatapp.conversation.domain.vo.ConversationPublicId;
 import com.chatapp.shared.service.State;
 import com.chatapp.user.domain.aggregate.User;

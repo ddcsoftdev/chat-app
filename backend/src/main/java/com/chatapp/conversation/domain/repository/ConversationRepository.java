@@ -2,7 +2,7 @@ package com.chatapp.conversation.domain.repository;
 
 import com.chatapp.conversation.domain.aggregate.Conversation;
 
-import com.chatapp.messaging.domain.message.aggregate.ConversationToCreate;
+import com.chatapp.conversation.domain.vo.CreateConversation;
 import com.chatapp.conversation.domain.vo.ConversationPublicId;
 import com.chatapp.user.domain.aggregate.User;
 import com.chatapp.user.domain.vo.UserPublicId;
@@ -14,7 +14,7 @@ import java.util.Optional;
 
 public interface ConversationRepository {
 
-    Conversation save(ConversationToCreate conversation, List<User> members);
+    Conversation save(CreateConversation conversation, List<User> members);
 
     Optional<Conversation> get(ConversationPublicId conversationPublicId);
 

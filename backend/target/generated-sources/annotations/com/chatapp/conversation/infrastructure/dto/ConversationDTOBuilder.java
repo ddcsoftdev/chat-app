@@ -1,6 +1,6 @@
 package com.chatapp.conversation.infrastructure.dto;
 
-import com.chatapp.infrastructure.primary.message.RestMessage;
+import com.chatapp.message.infrastructure.dto.MessageDto;
 import java.lang.String;
 import java.util.List;
 import java.util.UUID;
@@ -14,7 +14,7 @@ public class ConversationDtoBuilder {
 
   private List<UserConversationDto> members;
 
-  private List<RestMessage> messages;
+  private List<MessageDto> messages;
 
   public static ConversationDtoBuilder conversationDto() {
     return new ConversationDtoBuilder();
@@ -35,7 +35,7 @@ public class ConversationDtoBuilder {
     return this;
   }
 
-  public ConversationDtoBuilder messages(List<RestMessage> messages) {
+  public ConversationDtoBuilder messages(List<MessageDto> messages) {
     this.messages = messages;
     return this;
   }

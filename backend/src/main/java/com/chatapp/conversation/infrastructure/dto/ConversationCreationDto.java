@@ -1,7 +1,7 @@
 package com.chatapp.conversation.infrastructure.dto;
 
-import com.chatapp.messaging.domain.message.aggregate.ConversationToCreate;
-import com.chatapp.messaging.domain.message.aggregate.ConversationToCreateBuilder;
+import com.chatapp.conversation.domain.vo.CreateConversation;
+import com.chatapp.conversation.domain.vo.CreateConversationBuilder;
 import com.chatapp.conversation.domain.vo.ConversationName;
 import com.chatapp.user.domain.vo.UserPublicId;
 import org.jilt.Builder;
@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 @Builder
 public record ConversationCreationDto(Set<UUID> members, String name) {
 
-    public static ConversationToCreate toDomain(ConversationCreationDto restConversationToCreate) {
+    public static CreateConversation toDomain(ConversationCreationDto restConversationToCreate) {
         ConversationCreationDtoBuilder restConversationToCreateBuilder = ConversationCreationDtoBuilder.conversationCreationDto();
 
         Set<UserPublicId> userUUIDs = restConversationToCreate.members
@@ -21,7 +21,7 @@ public record ConversationCreationDto(Set<UUID> members, String name) {
                 .map(UserPublicId::new)
                 .collect(Collectors.toSet());
 
-        return ConversationToCreateBuilder.conversationToCreate()
+        return CreateConversationBuilder.createConversation()
                 .name(new ConversationName(restConversationToCreate.name()))
                 .members(userUUIDs)
                 .build();

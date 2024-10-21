@@ -1,7 +1,6 @@
 package com.chatapp.message.infrastructure.entity;
 
 import com.chatapp.conversation.infrastructure.entity.ConversationEntity;
-import com.chatapp.infrastructure.secundary.entity.MessageContentBinaryEntity;
 import com.chatapp.message.domain.vo.MessageSendState;
 import com.chatapp.message.domain.vo.MessageType;
 import com.chatapp.user.infrastructure.entity.UserEntity;

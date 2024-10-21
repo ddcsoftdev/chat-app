@@ -4,7 +4,7 @@ import com.chatapp.conversation.application.service.ConversationManagementServic
 import com.chatapp.conversation.domain.aggregate.Conversation;
 import com.chatapp.conversation.infrastructure.dto.ConversationCreationDto;
 import com.chatapp.conversation.infrastructure.dto.ConversationDto;
-import com.chatapp.messaging.domain.message.aggregate.ConversationToCreate;
+import com.chatapp.conversation.domain.vo.CreateConversation;
 import com.chatapp.conversation.domain.vo.ConversationPublicId;
 import com.chatapp.shared.service.State;
 import com.chatapp.shared.service.StatusNotification;
@@ -41,7 +41,7 @@ public class ConversationController {
     @PostMapping
     ResponseEntity<ConversationDto> create(@RequestBody
                                            ConversationCreationDto restConversationToCreate) {
-        ConversationToCreate newConversation = ConversationCreationDto.toDomain(restConversationToCreate);
+        CreateConversation newConversation = ConversationCreationDto.toDomain(restConversationToCreate);
         State<Conversation, String> conversationState = conversationsApplicationService.create(newConversation);
         if (conversationState.getStatus().equals(StatusNotification.OK)) {
             ConversationDto restConversations = ConversationDto.from(conversationState.getValue());

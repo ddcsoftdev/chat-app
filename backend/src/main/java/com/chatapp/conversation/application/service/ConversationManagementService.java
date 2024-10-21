@@ -2,9 +2,9 @@ package com.chatapp.conversation.application.service;
 
 import com.chatapp.conversation.domain.aggregate.Conversation;
 import com.chatapp.conversation.domain.repository.ConversationRepository;
-import com.chatapp.messaging.domain.message.aggregate.ConversationToCreate;
-import com.chatapp.messaging.domain.message.repository.MessageRepository;
-import com.chatapp.messaging.domain.message.service.*;
+import com.chatapp.message.application.service.MessageChangeNotifier;
+import com.chatapp.conversation.domain.vo.CreateConversation;
+import com.chatapp.message.domain.repository.MessageRepository;
 import com.chatapp.conversation.domain.vo.ConversationPublicId;
 import com.chatapp.shared.service.State;
 import com.chatapp.user.application.service.UserApplicationService;
@@ -41,7 +41,7 @@ public class ConversationManagementService {
     }
 
     @Transactional
-    public State<Conversation, String> create(ConversationToCreate conversation) {
+    public State<Conversation, String> create(CreateConversation conversation) {
         User authenticatedUser = usersApplicationService.getAuthenticatedUser();
         return conversationCreator.create(conversation, authenticatedUser);
     }

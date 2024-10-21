@@ -5,7 +5,7 @@ import com.chatapp.conversation.domain.aggregate.Conversation;
 import com.chatapp.conversation.infrastructure.dto.ConversationCreationDto;
 import com.chatapp.conversation.infrastructure.dto.ConversationDto;
 import com.chatapp.messaging.domain.message.aggregate.ConversationToCreate;
-import com.chatapp.messaging.domain.message.vo.ConversationPublicId;
+import com.chatapp.conversation.domain.vo.ConversationPublicId;
 import com.chatapp.shared.service.State;
 import com.chatapp.shared.service.StatusNotification;
 import org.springframework.data.domain.Pageable;
@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.function.Function;
 
 @RestController
 @RequestMapping("/api/conversations")

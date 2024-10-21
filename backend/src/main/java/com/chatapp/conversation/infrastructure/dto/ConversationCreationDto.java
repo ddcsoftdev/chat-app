@@ -2,7 +2,7 @@ package com.chatapp.conversation.infrastructure.dto;
 
 import com.chatapp.messaging.domain.message.aggregate.ConversationToCreate;
 import com.chatapp.messaging.domain.message.aggregate.ConversationToCreateBuilder;
-import com.chatapp.messaging.domain.message.vo.ConversationName;
+import com.chatapp.conversation.domain.vo.ConversationName;
 import com.chatapp.user.domain.vo.UserPublicId;
 import org.jilt.Builder;
 

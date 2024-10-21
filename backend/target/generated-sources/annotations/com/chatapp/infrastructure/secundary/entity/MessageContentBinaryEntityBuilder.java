@@ -1,5 +1,6 @@
 package com.chatapp.infrastructure.secundary.entity;
 
+import com.chatapp.message.infrastructure.entity.MessageEntity;
 import java.lang.Long;
 import java.lang.String;
 import javax.annotation.processing.Generated;

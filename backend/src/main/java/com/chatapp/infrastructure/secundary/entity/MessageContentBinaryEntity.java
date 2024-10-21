@@ -1,6 +1,7 @@
 package com.chatapp.infrastructure.secundary.entity;
 
-import com.chatapp.messaging.domain.message.vo.MessageContent;
+import com.chatapp.message.infrastructure.entity.MessageEntity;
+import com.chatapp.message.domain.vo.MessageContent;
 import com.chatapp.shared.jpa.AbstractAuditingEntity;
 import jakarta.persistence.*;
 import org.jilt.Builder;

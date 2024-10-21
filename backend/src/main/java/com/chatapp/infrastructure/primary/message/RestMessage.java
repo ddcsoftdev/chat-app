@@ -1,9 +1,13 @@
 package com.chatapp.infrastructure.primary.message;
 
-import com.chatapp.messaging.domain.message.aggregate.Message;
+import com.chatapp.conversation.domain.vo.ConversationPublicId;
+import com.chatapp.message.domain.aggregate.Message;
+import com.chatapp.message.domain.vo.MessageMediaContent;
+import com.chatapp.message.domain.vo.MessageSendState;
+import com.chatapp.message.domain.vo.MessageType;
 import com.chatapp.messaging.domain.message.aggregate.MessageSendNew;
 import com.chatapp.messaging.domain.message.aggregate.MessageSendNewBuilder;
-import com.chatapp.messaging.domain.message.vo.*;
+import com.chatapp.message.domain.vo.*;
 import org.jilt.Builder;
 
 import java.time.Instant;

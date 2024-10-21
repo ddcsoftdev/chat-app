@@ -1,7 +1,7 @@
 package com.chatapp.infrastructure.primary.message;
 
-import com.chatapp.messaging.domain.message.vo.MessageSendState;
-import com.chatapp.messaging.domain.message.vo.MessageType;
+import com.chatapp.message.domain.vo.MessageSendState;
+import com.chatapp.message.domain.vo.MessageType;
 import java.lang.String;
 import java.time.Instant;
 import java.util.UUID;

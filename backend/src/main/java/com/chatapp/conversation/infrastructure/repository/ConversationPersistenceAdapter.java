@@ -5,7 +5,7 @@ import com.chatapp.conversation.domain.repository.ConversationRepository;
 import com.chatapp.conversation.infrastructure.entity.ConversationEntity;
 import com.chatapp.user.infrastructure.entity.UserEntity;
 import com.chatapp.messaging.domain.message.aggregate.ConversationToCreate;
-import com.chatapp.messaging.domain.message.vo.ConversationPublicId;
+import com.chatapp.conversation.domain.vo.ConversationPublicId;
 import com.chatapp.user.domain.aggregate.User;
 import com.chatapp.user.domain.vo.UserPublicId;
 import org.springframework.data.domain.Page;

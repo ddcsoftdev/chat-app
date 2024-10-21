@@ -1,7 +1,7 @@
 package com.chatapp.user.infrastructure.repository;
 
 import com.chatapp.user.infrastructure.entity.UserEntity;
-import com.chatapp.messaging.domain.message.vo.ConversationPublicId;
+import com.chatapp.conversation.domain.vo.ConversationPublicId;
 import com.chatapp.user.domain.aggregate.User;
 import com.chatapp.user.domain.repository.UserRepository;
 import com.chatapp.user.domain.vo.UserEmail;

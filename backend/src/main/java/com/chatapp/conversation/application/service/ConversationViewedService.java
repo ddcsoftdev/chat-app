@@ -1,11 +1,11 @@
 package com.chatapp.conversation.application.service;
 
 import com.chatapp.conversation.domain.vo.ConversationViewedForNotification;
-import com.chatapp.messaging.domain.message.aggregate.Message;
+import com.chatapp.message.domain.aggregate.Message;
 import com.chatapp.messaging.domain.message.repository.MessageRepository;
 import com.chatapp.messaging.domain.message.service.MessageChangeNotifier;
-import com.chatapp.messaging.domain.message.vo.ConversationPublicId;
-import com.chatapp.messaging.domain.message.vo.MessageSendState;
+import com.chatapp.conversation.domain.vo.ConversationPublicId;
+import com.chatapp.message.domain.vo.MessageSendState;
 import com.chatapp.shared.service.State;
 import com.chatapp.user.application.service.UserReaderService;
 import com.chatapp.user.domain.aggregate.User;

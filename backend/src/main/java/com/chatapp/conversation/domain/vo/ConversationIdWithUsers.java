@@ -1,6 +1,5 @@
 package com.chatapp.conversation.domain.vo;
 
-import com.chatapp.messaging.domain.message.vo.ConversationPublicId;
 import com.chatapp.user.domain.vo.UserPublicId;
 
 import java.util.List;

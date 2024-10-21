@@ -1,9 +1,9 @@
 package com.chatapp.messaging.domain.message.repository;
 
 import com.chatapp.conversation.domain.aggregate.Conversation;
-import com.chatapp.messaging.domain.message.aggregate.Message;
-import com.chatapp.messaging.domain.message.vo.ConversationPublicId;
-import com.chatapp.messaging.domain.message.vo.MessageSendState;
+import com.chatapp.message.domain.aggregate.Message;
+import com.chatapp.conversation.domain.vo.ConversationPublicId;
+import com.chatapp.message.domain.vo.MessageSendState;
 import com.chatapp.user.domain.aggregate.User;
 import com.chatapp.user.domain.vo.UserPublicId;
 

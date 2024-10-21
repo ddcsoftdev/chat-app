@@ -5,7 +5,7 @@ import com.chatapp.conversation.domain.repository.ConversationRepository;
 import com.chatapp.messaging.domain.message.aggregate.ConversationToCreate;
 import com.chatapp.messaging.domain.message.repository.MessageRepository;
 import com.chatapp.messaging.domain.message.service.*;
-import com.chatapp.messaging.domain.message.vo.ConversationPublicId;
+import com.chatapp.conversation.domain.vo.ConversationPublicId;
 import com.chatapp.shared.service.State;
 import com.chatapp.user.application.service.UserApplicationService;
 import com.chatapp.user.application.service.UserReaderService;

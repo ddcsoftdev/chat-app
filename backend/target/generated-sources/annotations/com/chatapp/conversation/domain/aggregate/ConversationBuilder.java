@@ -1,8 +1,8 @@
 package com.chatapp.conversation.domain.aggregate;
 
-import com.chatapp.messaging.domain.message.aggregate.Message;
-import com.chatapp.messaging.domain.message.vo.ConversationName;
-import com.chatapp.messaging.domain.message.vo.ConversationPublicId;
+import com.chatapp.conversation.domain.vo.ConversationName;
+import com.chatapp.conversation.domain.vo.ConversationPublicId;
+import com.chatapp.message.domain.aggregate.Message;
 import com.chatapp.user.domain.aggregate.User;
 import java.lang.Long;
 import java.util.Set;

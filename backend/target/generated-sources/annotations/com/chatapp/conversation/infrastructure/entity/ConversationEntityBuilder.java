@@ -1,6 +1,6 @@
 package com.chatapp.conversation.infrastructure.entity;
 
-import com.chatapp.infrastructure.secundary.entity.MessageEntity;
+import com.chatapp.message.infrastructure.entity.MessageEntity;
 import com.chatapp.user.infrastructure.entity.UserEntity;
 import java.lang.Long;
 import java.lang.String;

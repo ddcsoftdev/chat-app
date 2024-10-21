@@ -1,7 +1,7 @@
 package com.chatapp.infrastructure.primary.message;
 
 import com.chatapp.messaging.application.MessageApplicationService;
-import com.chatapp.messaging.domain.message.aggregate.Message;
+import com.chatapp.message.domain.aggregate.Message;
 import com.chatapp.messaging.domain.message.aggregate.MessageSendNew;
 import com.chatapp.shared.service.State;
 import com.chatapp.shared.service.StatusNotification;

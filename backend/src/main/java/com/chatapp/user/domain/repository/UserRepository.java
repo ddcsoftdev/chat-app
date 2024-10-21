@@ -1,6 +1,6 @@
 package com.chatapp.user.domain.repository;
 
-import com.chatapp.messaging.domain.message.vo.ConversationPublicId;
+import com.chatapp.conversation.domain.vo.ConversationPublicId;
 import com.chatapp.user.domain.aggregate.User;
 import com.chatapp.user.domain.vo.UserEmail;
 import com.chatapp.user.domain.vo.UserPublicId;

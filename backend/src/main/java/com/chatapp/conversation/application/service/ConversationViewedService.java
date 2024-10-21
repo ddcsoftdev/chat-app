@@ -1,6 +1,6 @@
 package com.chatapp.conversation.application.service;
 
-import com.chatapp.infrastructure.secundary.message.ConversationViewedForNotification;
+import com.chatapp.conversation.domain.vo.ConversationViewedForNotification;
 import com.chatapp.messaging.domain.message.aggregate.Message;
 import com.chatapp.messaging.domain.message.repository.MessageRepository;
 import com.chatapp.messaging.domain.message.service.MessageChangeNotifier;

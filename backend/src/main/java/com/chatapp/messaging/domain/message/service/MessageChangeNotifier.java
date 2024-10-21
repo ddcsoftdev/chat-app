@@ -1,6 +1,6 @@
 package com.chatapp.messaging.domain.message.service;
 
-import com.chatapp.infrastructure.secundary.message.ConversationViewedForNotification;
+import com.chatapp.conversation.domain.vo.ConversationViewedForNotification;
 import com.chatapp.messaging.domain.message.aggregate.Message;
 import com.chatapp.messaging.domain.message.vo.ConversationPublicId;
 import com.chatapp.shared.service.State;

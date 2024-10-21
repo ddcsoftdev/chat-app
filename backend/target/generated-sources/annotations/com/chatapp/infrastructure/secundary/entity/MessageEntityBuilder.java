@@ -3,6 +3,7 @@ package com.chatapp.infrastructure.secundary.entity;
 import com.chatapp.conversation.infrastructure.entity.ConversationEntity;
 import com.chatapp.messaging.domain.message.vo.MessageSendState;
 import com.chatapp.messaging.domain.message.vo.MessageType;
+import com.chatapp.user.infrastructure.entity.UserEntity;
 import java.lang.Long;
 import java.lang.String;
 import java.time.Instant;

@@ -1,5 +1,7 @@
 package com.chatapp.infrastructure.secundary.message;
 
+import com.chatapp.conversation.domain.vo.ConversationIdWithUsers;
+import com.chatapp.conversation.domain.vo.ConversationViewedForNotification;
 import com.chatapp.infrastructure.primary.message.RestMessage;
 import com.chatapp.messaging.domain.message.aggregate.Message;
 import com.chatapp.messaging.domain.message.service.MessageChangeNotifier;

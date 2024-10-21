@@ -6,6 +6,8 @@ import com.chatapp.messaging.domain.message.aggregate.MessageBuilder;
 import com.chatapp.messaging.domain.message.vo.*;
 import com.chatapp.shared.jpa.AbstractAuditingEntity;
 import com.chatapp.user.domain.vo.UserPublicId;
+import com.chatapp.user.infrastructure.entity.UserEntity;
+import com.chatapp.user.infrastructure.entity.UserEntityBuilder;
 import jakarta.persistence.*;
 import org.jilt.Builder;
 

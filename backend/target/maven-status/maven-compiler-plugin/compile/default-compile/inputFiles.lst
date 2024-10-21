@@ -6,6 +6,8 @@
 /Users/diegodemarco/Documents/Portfolio/chatroom/backend/src/main/java/com/chatapp/conversation/application/service/ConversationViewedService.java
 /Users/diegodemarco/Documents/Portfolio/chatroom/backend/src/main/java/com/chatapp/conversation/domain/aggregate/Conversation.java
 /Users/diegodemarco/Documents/Portfolio/chatroom/backend/src/main/java/com/chatapp/conversation/domain/repository/ConversationRepository.java
+/Users/diegodemarco/Documents/Portfolio/chatroom/backend/src/main/java/com/chatapp/conversation/domain/vo/ConversationIdWithUsers.java
+/Users/diegodemarco/Documents/Portfolio/chatroom/backend/src/main/java/com/chatapp/conversation/domain/vo/ConversationViewedForNotification.java
 /Users/diegodemarco/Documents/Portfolio/chatroom/backend/src/main/java/com/chatapp/conversation/infrastructure/controller/ConversationController.java
 /Users/diegodemarco/Documents/Portfolio/chatroom/backend/src/main/java/com/chatapp/conversation/infrastructure/dto/ConversationCreationDto.java
 /Users/diegodemarco/Documents/Portfolio/chatroom/backend/src/main/java/com/chatapp/conversation/infrastructure/dto/ConversationDto.java
@@ -15,15 +17,8 @@
 /Users/diegodemarco/Documents/Portfolio/chatroom/backend/src/main/java/com/chatapp/conversation/infrastructure/repository/JpaConversationRepository.java
 /Users/diegodemarco/Documents/Portfolio/chatroom/backend/src/main/java/com/chatapp/infrastructure/primary/message/MessageResource.java
 /Users/diegodemarco/Documents/Portfolio/chatroom/backend/src/main/java/com/chatapp/infrastructure/primary/message/RestMessage.java
-/Users/diegodemarco/Documents/Portfolio/chatroom/backend/src/main/java/com/chatapp/infrastructure/primary/user/RestAuthority.java
-/Users/diegodemarco/Documents/Portfolio/chatroom/backend/src/main/java/com/chatapp/infrastructure/primary/user/RestSearchUser.java
-/Users/diegodemarco/Documents/Portfolio/chatroom/backend/src/main/java/com/chatapp/infrastructure/primary/user/RestUser.java
-/Users/diegodemarco/Documents/Portfolio/chatroom/backend/src/main/java/com/chatapp/infrastructure/secundary/entity/AuthorityEntity.java
 /Users/diegodemarco/Documents/Portfolio/chatroom/backend/src/main/java/com/chatapp/infrastructure/secundary/entity/MessageContentBinaryEntity.java
 /Users/diegodemarco/Documents/Portfolio/chatroom/backend/src/main/java/com/chatapp/infrastructure/secundary/entity/MessageEntity.java
-/Users/diegodemarco/Documents/Portfolio/chatroom/backend/src/main/java/com/chatapp/infrastructure/secundary/entity/UserEntity.java
-/Users/diegodemarco/Documents/Portfolio/chatroom/backend/src/main/java/com/chatapp/infrastructure/secundary/message/ConversationIdWithUsers.java
-/Users/diegodemarco/Documents/Portfolio/chatroom/backend/src/main/java/com/chatapp/infrastructure/secundary/message/ConversationViewedForNotification.java
 /Users/diegodemarco/Documents/Portfolio/chatroom/backend/src/main/java/com/chatapp/infrastructure/secundary/message/MessageIdWithUsers.java
 /Users/diegodemarco/Documents/Portfolio/chatroom/backend/src/main/java/com/chatapp/infrastructure/secundary/message/MessageWithUsers.java
 /Users/diegodemarco/Documents/Portfolio/chatroom/backend/src/main/java/com/chatapp/infrastructure/secundary/message/NotificationEventName.java
@@ -32,9 +27,7 @@
 /Users/diegodemarco/Documents/Portfolio/chatroom/backend/src/main/java/com/chatapp/infrastructure/secundary/message/SpringEventMessageChangeNotifier.java
 /Users/diegodemarco/Documents/Portfolio/chatroom/backend/src/main/java/com/chatapp/infrastructure/secundary/repository/JpaMessageBinaryContent.java
 /Users/diegodemarco/Documents/Portfolio/chatroom/backend/src/main/java/com/chatapp/infrastructure/secundary/repository/JpaMessageRepository.java
-/Users/diegodemarco/Documents/Portfolio/chatroom/backend/src/main/java/com/chatapp/infrastructure/secundary/repository/JpaUserRepository.java
 /Users/diegodemarco/Documents/Portfolio/chatroom/backend/src/main/java/com/chatapp/infrastructure/secundary/repository/SpringDataMessageRepository.java
-/Users/diegodemarco/Documents/Portfolio/chatroom/backend/src/main/java/com/chatapp/infrastructure/secundary/repository/SpringDataUserRepository.java
 /Users/diegodemarco/Documents/Portfolio/chatroom/backend/src/main/java/com/chatapp/messaging/application/MessageApplicationService.java
 /Users/diegodemarco/Documents/Portfolio/chatroom/backend/src/main/java/com/chatapp/messaging/domain/message/aggregate/ConversationToCreate.java
 /Users/diegodemarco/Documents/Portfolio/chatroom/backend/src/main/java/com/chatapp/messaging/domain/message/aggregate/Conversations.java
@@ -95,6 +88,10 @@
 /Users/diegodemarco/Documents/Portfolio/chatroom/backend/src/main/java/com/chatapp/user/infrastructure/dto/AuthorityDto.java
 /Users/diegodemarco/Documents/Portfolio/chatroom/backend/src/main/java/com/chatapp/user/infrastructure/dto/SearchUserDto.java
 /Users/diegodemarco/Documents/Portfolio/chatroom/backend/src/main/java/com/chatapp/user/infrastructure/dto/UserDto.java
+/Users/diegodemarco/Documents/Portfolio/chatroom/backend/src/main/java/com/chatapp/user/infrastructure/entity/AuthorityEntity.java
+/Users/diegodemarco/Documents/Portfolio/chatroom/backend/src/main/java/com/chatapp/user/infrastructure/entity/UserEntity.java
+/Users/diegodemarco/Documents/Portfolio/chatroom/backend/src/main/java/com/chatapp/user/infrastructure/repository/JpaUserRepository.java
+/Users/diegodemarco/Documents/Portfolio/chatroom/backend/src/main/java/com/chatapp/user/infrastructure/repository/UserPersistenceAdapter.java
 /Users/diegodemarco/Documents/Portfolio/chatroom/backend/src/main/java/com/chatapp/wire/postgresql/infrastructure/DatabaseConfiguration.java
 /Users/diegodemarco/Documents/Portfolio/chatroom/backend/src/main/java/com/chatapp/wire/scheduling/infrastructure/SchedulingConfiguration.java
 /Users/diegodemarco/Documents/Portfolio/chatroom/backend/src/main/java/com/chatapp/wire/security/infrasetructure/CorsFilterConfiguration.java

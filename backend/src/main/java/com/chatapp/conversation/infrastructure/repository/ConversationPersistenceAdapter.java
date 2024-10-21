@@ -3,7 +3,7 @@ package com.chatapp.conversation.infrastructure.repository;
 import com.chatapp.conversation.domain.aggregate.Conversation;
 import com.chatapp.conversation.domain.repository.ConversationRepository;
 import com.chatapp.conversation.infrastructure.entity.ConversationEntity;
-import com.chatapp.infrastructure.secundary.entity.UserEntity;
+import com.chatapp.user.infrastructure.entity.UserEntity;
 import com.chatapp.messaging.domain.message.aggregate.ConversationToCreate;
 import com.chatapp.messaging.domain.message.vo.ConversationPublicId;
 import com.chatapp.user.domain.aggregate.User;

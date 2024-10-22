@@ -1,4 +1,4 @@
-package com.chatapp.wire.postgresql.infrastructure;
+package com.chatapp.shared.configuration;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;

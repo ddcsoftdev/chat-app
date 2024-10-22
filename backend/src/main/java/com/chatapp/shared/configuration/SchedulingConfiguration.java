@@ -1,4 +1,4 @@
-package com.chatapp.wire.scheduling.infrastructure;
+package com.chatapp.shared.configuration;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;

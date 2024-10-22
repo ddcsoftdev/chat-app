@@ -1,4 +1,4 @@
-package com.chatapp.wire.security.infrasetructure;
+package com.chatapp.shared.configuration;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;

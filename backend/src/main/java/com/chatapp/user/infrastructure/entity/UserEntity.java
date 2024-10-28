@@ -14,7 +14,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Entity
-@Table(name = "whatsapp_user")
+@Table(name = "user")
 @Builder
 public class UserEntity extends AbstractAuditingEntity<Long> {
 

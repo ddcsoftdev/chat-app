@@ -26,7 +26,7 @@ public class UserPersistenceAdapter implements UserRepository {
     }
 
     @Override
-    public void save(User user) {
+    public User save(User user) {
         if (user.getDbId() != null) {
             Optional<UserEntity> userToUpdateOpt = jpaUserRepository.findById(user.getDbId());
             if (userToUpdateOpt.isPresent()) {
@@ -37,6 +37,7 @@ public class UserPersistenceAdapter implements UserRepository {
         } else {
             jpaUserRepository.save(UserEntity.from(user));
         }
+        return user;
     }
 
     @Override

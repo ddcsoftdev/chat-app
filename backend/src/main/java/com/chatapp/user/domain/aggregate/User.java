@@ -21,6 +21,8 @@ public class User {
 
     private UserEmail email;
 
+    private UserPassword password;
+
     private UserPublicId userPublicId;
 
     private UserImageUrl imageUrl;
@@ -35,13 +37,14 @@ public class User {
 
     private Long dbId;
 
-    public User(UserLastName lastName, UserFirstName firstname, UserEmail email,
+    public User(UserLastName lastName, UserFirstName firstname, UserEmail email, UserPassword password,
                 UserPublicId userPublicId, UserImageUrl imageUrl, Instant lastModifiedDate,
                 Instant createdDate, Instant lastSeen, Set<Authority> authorities, Long dbId) {
         assertMandatoryFields(lastName, firstname, email, authorities);
         this.lastName = lastName;
         this.firstname = firstname;
         this.email = email;
+        this.password = password;
         this.userPublicId = userPublicId;
         this.imageUrl = imageUrl;
         this.lastModifiedDate = lastModifiedDate;
@@ -51,6 +54,13 @@ public class User {
         this.dbId = dbId;
     }
 
+    public User(UserLastName lastName, UserFirstName firstname, UserEmail email, UserPassword password) {
+        this.lastName = lastName;
+        this.firstname = firstname;
+        this.email = email;
+        this.password = password;
+    }
+
     private void assertMandatoryFields(UserLastName lastName,
                                        UserFirstName firstname,
                                        UserEmail email,
@@ -58,11 +68,13 @@ public class User {
         Assert.notNull("lastName", lastName);
         Assert.notNull("firstname", firstname);
         Assert.notNull("email", email);
+        Assert.notNull("password", password);
         Assert.notNull("authorities", authorities);
     }
 
     public void updateFromUser(User user) {
         this.email = user.email;
+        this.password = user.password;
         this.lastName = user.lastName;
         this.firstname = user.firstname;
         this.imageUrl = user.imageUrl;
@@ -97,6 +109,10 @@ public class User {
             userBuilder.email(new UserEmail(sub));
         }
 
+        if (attributes.containsKey("password")){
+            userBuilder.password(new UserPassword(attributes.get("password").toString()));
+        }
+
         if (attributes.containsKey("image_url")) {
             userBuilder.imageUrl(new UserImageUrl(attributes.get("image_url").toString()));
         }
@@ -127,6 +143,8 @@ public class User {
         return email;
     }
 
+    public UserPassword getPassword() {return password;}
+
     public UserPublicId getUserPublicId() {
         return userPublicId;
     }
@@ -154,4 +172,5 @@ public class User {
     public Long getDbId() {
         return dbId;
     }
+
 }

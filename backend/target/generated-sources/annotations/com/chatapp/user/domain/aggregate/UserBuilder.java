@@ -4,6 +4,7 @@ import com.chatapp.user.domain.vo.UserEmail;
 import com.chatapp.user.domain.vo.UserFirstName;
 import com.chatapp.user.domain.vo.UserImageUrl;
 import com.chatapp.user.domain.vo.UserLastName;
+import com.chatapp.user.domain.vo.UserPassword;
 import com.chatapp.user.domain.vo.UserPublicId;
 import java.lang.Long;
 import java.time.Instant;
@@ -17,6 +18,8 @@ public class UserBuilder {
   private UserFirstName firstname;
 
   private UserEmail email;
+
+  private UserPassword password;
 
   private UserPublicId userPublicId;
 
@@ -48,6 +51,11 @@ public class UserBuilder {
 
   public UserBuilder email(UserEmail email) {
     this.email = email;
+    return this;
+  }
+
+  public UserBuilder password(UserPassword password) {
+    this.password = password;
     return this;
   }
 
@@ -87,6 +95,6 @@ public class UserBuilder {
   }
 
   public User build() {
-    return new User(lastName, firstname, email, userPublicId, imageUrl, lastModifiedDate, createdDate, lastSeen, authorities, dbId);
+    return new User(lastName, firstname, email, password, userPublicId, imageUrl, lastModifiedDate, createdDate, lastSeen, authorities, dbId);
   }
 }

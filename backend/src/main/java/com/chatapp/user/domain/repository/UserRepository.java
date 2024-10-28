@@ -14,7 +14,7 @@ import java.util.Set;
 
 public interface UserRepository {
 
-    void save(User user);
+    User save(User user);
 
     Optional<User> get(UserPublicId userPublicId);
 

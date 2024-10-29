@@ -1,6 +1,7 @@
 package com.chatapp.user.infrastructure.controller;
 
 import com.chatapp.user.application.service.UserApplicationService;
+import com.chatapp.user.application.service.UserAuthenticationService;
 import com.chatapp.user.domain.aggregate.User;
 import com.chatapp.user.domain.vo.UserPublicId;
 import com.chatapp.user.infrastructure.dto.LoginRequestDto;
@@ -20,6 +21,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
 
+import javax.management.remote.JMXAuthenticator;
 import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
@@ -30,20 +32,29 @@ import java.util.UUID;
 public class UserController {
 
     private final UserApplicationService usersApplicationService;
+    private final UserAuthenticationService userAuthenticationService;
     private final AuthenticationManager authenticationManager;
     private final JwtUtil jwtUtil;
 
-    public UserController(UserApplicationService usersApplicationService, AuthenticationManager authenticationManager, JwtUtil jwtUtil) {
+
+    public UserController(UserApplicationService usersApplicationService,
+                          UserAuthenticationService userAuthenticationService,
+                          AuthenticationManager authenticationManager,
+                          JwtUtil jwtUtil) {
         this.usersApplicationService = usersApplicationService;
+        this.userAuthenticationService = userAuthenticationService;
         this.authenticationManager = authenticationManager;
         this.jwtUtil = jwtUtil;
     }
 
     @PostMapping("/login")
     public ResponseEntity<AuthenticationResponseDto> login(@RequestBody LoginRequestDto loginRequest) {
-        // Authenticate the user
         Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(loginRequest.username(), loginRequest.password()));
+                new UsernamePasswordAuthenticationToken(
+                        loginRequest.username(),
+                        loginRequest.password()
+                )
+        );
 
         // Generate JWT token if authentication is successful
         String jwtToken = jwtUtil.generateToken(authentication.getName());
@@ -54,7 +65,7 @@ public class UserController {
     @PostMapping("/register")
     public ResponseEntity<UserDto> register(@RequestBody RegisterRequestDto registerRequest) {
         // Create and save a new user
-        User newUser =  usersApplicationService.register(registerRequest);
+        User newUser =  null;//userAuthenticationService.register(registerRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(UserDto.from(newUser));
     }
 

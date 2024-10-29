@@ -5,15 +5,8 @@ import com.chatapp.user.domain.aggregate.User;
 import com.chatapp.user.domain.repository.UserRepository;
 import com.chatapp.user.domain.vo.UserEmail;
 import com.chatapp.user.domain.vo.UserPublicId;
-import com.chatapp.user.infrastructure.dto.AuthenticationResponseDto;
-import com.chatapp.user.infrastructure.dto.LoginRequestDto;
 import com.chatapp.user.infrastructure.dto.RegisterRequestDto;
-import com.chatapp.user.infrastructure.security.JwtUtil;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,49 +21,15 @@ public class UserApplicationService {
     private final UserSynchronizerService userSynchronizer;
     private final UserReaderService userReader;
     private final UserPresenceService userPresence;
+    private final UserLookupService userLookupService;
     private final UserRepository userRepository;
-    private final AuthenticationManager authenticationManager;
-    private final JwtUtil jwtUtil;
-    private final PasswordEncoder passwordEncoder;
 
-    public UserApplicationService(UserRepository userRepository,
-                                  AuthenticationManager authenticationManager,
-                                  JwtUtil jwtUtil,
-                                  PasswordEncoder passwordEncoder) {
+    public UserApplicationService(UserRepository userRepository, UserLookupService userLookupService) {
         this.userSynchronizer = new UserSynchronizerService(userRepository);
         this.userReader = new UserReaderService(userRepository);
         this.userPresence = new UserPresenceService(userRepository, userReader);
+        this.userLookupService = userLookupService;
         this.userRepository = userRepository;
-        this.authenticationManager = authenticationManager;
-        this.jwtUtil = jwtUtil;
-        this.passwordEncoder = passwordEncoder;
-    }
-
-    @Transactional
-    public AuthenticationResponseDto login(LoginRequestDto loginRequest) {
-        // Authenticate the user using the AuthenticationManager
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        loginRequest.username(),
-                        loginRequest.password()
-                )
-        );
-
-        // Generate a JWT token
-        String jwtToken = jwtUtil.generateToken(authentication.getName());
-        return new AuthenticationResponseDto(jwtToken);
-    }
-
-    @Transactional
-    public User register(RegisterRequestDto registerRequest) {
-
-        User newUser = new User(
-                registerRequest.lastName(),
-                registerRequest.firstName(),
-                registerRequest.email(),
-                registerRequest.password()
-        );
-        return userRepository.save(newUser);
     }
 
     @Transactional
@@ -105,4 +64,23 @@ public class UserApplicationService {
     public Optional<Instant> getLastSeen(UserPublicId userPublicId) {
         return userPresence.getLastSeenByPublicId(userPublicId);
     }
+    @Transactional
+    public User register(RegisterRequestDto registerRequest) {
+        // Check if the email is already registered
+        if (userLookupService.getUserByEmail(registerRequest.email()).isPresent()) {
+            throw new IllegalArgumentException("Email already in use");
+        }
+
+        // Create a new user
+        User newUser = new User(
+                registerRequest.lastName(),
+                registerRequest.firstName(),
+                registerRequest.email(),
+                registerRequest.password()
+        );
+
+        // Save user to the database
+        return userRepository.save(newUser);
+    }
+
 }

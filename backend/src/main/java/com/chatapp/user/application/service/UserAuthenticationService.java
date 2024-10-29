@@ -1,26 +1,29 @@
-package com.chatapp.user.infrastructure.security;
+package com.chatapp.user.application.service;
 
-import com.chatapp.user.application.service.UserApplicationService;
-import com.chatapp.user.domain.aggregate.Authority;
 import com.chatapp.user.domain.aggregate.User;
 import com.chatapp.user.domain.vo.UserEmail;
-import org.springframework.security.core.GrantedAuthority;
+import com.chatapp.user.infrastructure.dto.AuthenticationResponseDto;
+import com.chatapp.user.infrastructure.dto.LoginRequestDto;
+import com.chatapp.user.infrastructure.security.JwtUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
-public class CustomUserDetailsService implements UserDetailsService {
+public class UserAuthenticationService implements UserDetailsService {
 
     private final UserApplicationService userApplicationService;
 
-    public CustomUserDetailsService(UserApplicationService userApplicationService) {
+    public UserAuthenticationService(UserApplicationService userApplicationService) {
         this.userApplicationService = userApplicationService;
     }
 

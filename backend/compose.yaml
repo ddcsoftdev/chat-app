@@ -6,4 +6,4 @@ services:
       - 'POSTGRES_USER=admin'
       - 'POSTGRES_PASSWORD=secret'
     ports:
-      - '5432'
+      - '6335:5432'

@@ -1,9 +1,9 @@
 package com.chatapp.user.service;
 
 import com.chatapp.conversation.dto.ConversationDTOMapper;
-import com.chatapp.conversation.entity.Conversation;
-import com.chatapp.conversation.entity.ConversationBuilder;
 import com.chatapp.exceptions.DuplicateResourceException;
+import com.chatapp.user.dto.ChatUserDTO;
+import com.chatapp.user.dto.ChatUserDTOMapper;
 import com.chatapp.user.dto.ChatUserRegistrationRequestDTO;
 import com.chatapp.user.entity.ChatUser;
 import com.chatapp.user.entity.ChatUserBuilder;
@@ -12,20 +12,21 @@ import com.chatapp.user.utils.EAuthRoles;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
-import java.util.Optional;
-import java.util.Set;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ChatUserService {
 
     private final PasswordEncoder passwordEncoder;
     private final ChatUserJPARepositoryAdapter chatUserRepository;
+    private final ChatUserDTOMapper chatUserDTOMapper;
     private final ConversationDTOMapper conversationDTOMapper;
 
-    public ChatUserService(PasswordEncoder passwordEncoder, ChatUserJPARepositoryAdapter chatUserRepository, ConversationDTOMapper conversationDTOMapper) {
+    public ChatUserService(PasswordEncoder passwordEncoder, ChatUserJPARepositoryAdapter chatUserRepository, ChatUserDTOMapper chatUserDTOMapper, ConversationDTOMapper conversationDTOMapper) {
         this.passwordEncoder = passwordEncoder;
         this.chatUserRepository = chatUserRepository;
+        this.chatUserDTOMapper = chatUserDTOMapper;
         this.conversationDTOMapper = conversationDTOMapper;
     }
 
@@ -45,5 +46,12 @@ public class ChatUserService {
                 .build();
 
         chatUserRepository.insertUser(chatUser);
+    }
+
+    public List<ChatUserDTO> getAllUsers(){
+        return chatUserRepository.selectAllUsers()
+                .stream()
+                .map(chatUserDTOMapper)
+                .collect(Collectors.toList());
     }
 }

@@ -63,7 +63,9 @@ public class SecurityFilterChainConfig{
         // Configure authorization rules
         http.authorizeHttpRequests(req -> {
             // Allow unauthenticated POST requests to the specified endpoint
-            req.requestMatchers(HttpMethod.POST, "/api/v1/user/register")
+            req.requestMatchers(HttpMethod.POST,
+                            "/api/v1/user/register",
+                            "/api/v1/auth/login")
                     .permitAll()
                     // Any other request must be authenticated
                     .anyRequest()

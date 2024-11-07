@@ -173,6 +173,4 @@ public class ChatUser implements UserDetails {
     public String getUsername() {
         return email;
     }
-
-
 }

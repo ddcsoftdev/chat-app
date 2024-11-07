@@ -1,14 +1,14 @@
 package com.chatapp.user.controller;
 
 import com.chatapp.jwt.JWTUtil;
+import com.chatapp.user.dto.ChatUserDTO;
 import com.chatapp.user.dto.ChatUserRegistrationRequestDTO;
 import com.chatapp.user.service.ChatUserService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/user")
@@ -29,5 +29,10 @@ public class ChatUserController {
         return ResponseEntity.ok()
                 .header(HttpHeaders.AUTHORIZATION, jwtToken)
                 .build();
+    }
+
+    @GetMapping("/")
+    public List<ChatUserDTO> getAllUsers(){
+        return chatUserService.getAllUsers();
     }
 }

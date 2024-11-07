@@ -1,6 +1,6 @@
 package com.chatapp.auth;
 
-public record AuthenticationRequest(
+public record AuthenticationRequestDTO(
         String email,
         String password
 ) {

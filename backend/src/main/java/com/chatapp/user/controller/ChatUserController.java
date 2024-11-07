@@ -1,6 +1,6 @@
 package com.chatapp.user.controller;
 
-import com.chatapp.jwt.JWTUtil;
+import com.chatapp.shared.jwt.JWTUtil;
 import com.chatapp.user.dto.ChatUserDTO;
 import com.chatapp.user.dto.ChatUserRegistrationRequestDTO;
 import com.chatapp.user.service.ChatUserService;
@@ -31,8 +31,13 @@ public class ChatUserController {
                 .build();
     }
 
-    @GetMapping("/")
-    public List<ChatUserDTO> getAllUsers(){
+    @GetMapping("")
+    public List<ChatUserDTO> getAllUsers() {
         return chatUserService.getAllUsers();
+    }
+
+    @GetMapping("/{id}")
+    public ChatUserDTO getUserById(@PathVariable("id") Long id) {
+        return chatUserService.getUserById(id);
     }
 }

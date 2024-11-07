@@ -1,4 +1,4 @@
-package com.chatapp.exceptions;
+package com.chatapp.shared.exceptions.types;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

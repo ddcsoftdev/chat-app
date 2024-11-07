@@ -1,7 +1,8 @@
 package com.chatapp.user.service;
 
 import com.chatapp.conversation.dto.ConversationDTOMapper;
-import com.chatapp.exceptions.DuplicateResourceException;
+import com.chatapp.shared.exceptions.types.DuplicateResourceException;
+import com.chatapp.shared.exceptions.types.ResourceNotFoundException;
 import com.chatapp.user.dto.ChatUserDTO;
 import com.chatapp.user.dto.ChatUserDTOMapper;
 import com.chatapp.user.dto.ChatUserRegistrationRequestDTO;
@@ -53,5 +54,13 @@ public class ChatUserService {
                 .stream()
                 .map(chatUserDTOMapper)
                 .collect(Collectors.toList());
+    }
+
+    public ChatUserDTO getUserById(Long id) {
+        return chatUserRepository.selectUserById(id)
+                .map(chatUserDTOMapper)
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "User with id[%d] not found".formatted(id)
+                ));
     }
 }

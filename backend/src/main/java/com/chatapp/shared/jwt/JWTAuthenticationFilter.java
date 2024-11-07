@@ -1,4 +1,4 @@
-package com.chatapp.jwt;
+package com.chatapp.shared.jwt;
 
 import com.chatapp.user.service.CustomUserDetailsService;
 import io.micrometer.common.lang.NonNull;

@@ -1,4 +1,4 @@
-package com.chatapp.jwt;
+package com.chatapp.shared.jwt;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -34,7 +34,7 @@ public class JWTUtil {
         String token = Jwts.builder()
                 .setClaims(claims)//make sure subject is set after claims, or it will override
                 .setSubject(subject)
-                .setIssuer("http://localhost:8080/api/v1/customers")//Website url that is issuing the token
+                .setIssuer("http://localhost:8080/api/v1/users")//Website url that is issuing the token
                 .setIssuedAt(Date.from(Instant.now()))//Sets current date
                 .setExpiration(Date.from(Instant.now().plus(15, ChronoUnit.DAYS)))//Adding expiration date
                 .signWith(getSigningKey(), SignatureAlgorithm.HS256)

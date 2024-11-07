@@ -1,6 +1,6 @@
 package com.chatapp.auth;
 
-import com.chatapp.shared.jwt.JWTUtil;
+import com.chatapp.infraestructure.jwt.JWTUtil;
 import com.chatapp.user.dto.ChatUserDTO;
 import com.chatapp.user.dto.ChatUserDTOMapper;
 import com.chatapp.user.entity.ChatUser;

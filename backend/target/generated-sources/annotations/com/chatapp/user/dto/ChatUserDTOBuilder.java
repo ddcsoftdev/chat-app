@@ -1,8 +1,10 @@
 package com.chatapp.user.dto;
 
-import com.chatapp.user.utils.EAuthRoles;
+import com.chatapp.conversation.dto.ConversationDTO;
+import com.chatapp.user.enums.EAuthRoles;
 import java.lang.Long;
 import java.lang.String;
+import java.util.Set;
 import javax.annotation.processing.Generated;
 
 @Generated("Jilt-1.5")
@@ -18,6 +20,8 @@ public class ChatUserDTOBuilder {
   private String email;
 
   private EAuthRoles role;
+
+  private Set<ConversationDTO> conversations;
 
   public static ChatUserDTOBuilder chatUserDTO() {
     return new ChatUserDTOBuilder();
@@ -53,7 +57,12 @@ public class ChatUserDTOBuilder {
     return this;
   }
 
+  public ChatUserDTOBuilder conversations(Set<ConversationDTO> conversations) {
+    this.conversations = conversations;
+    return this;
+  }
+
   public ChatUserDTO build() {
-    return new ChatUserDTO(id, firstName, lastName, nickname, email, role);
+    return new ChatUserDTO(id, firstName, lastName, nickname, email, role, conversations);
   }
 }

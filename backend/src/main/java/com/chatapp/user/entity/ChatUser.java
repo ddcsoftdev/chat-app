@@ -1,9 +1,8 @@
 package com.chatapp.user.entity;
 
 import com.chatapp.conversation.entity.Conversation;
-import com.chatapp.user.utils.EAuthRoles;
+import com.chatapp.user.enums.EAuthRoles;
 import jakarta.persistence.*;
-import org.jilt.Builder;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

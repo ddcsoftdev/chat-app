@@ -1,11 +1,6 @@
 package com.chatapp.user.entity;
 
-import com.chatapp.conversation.entity.Conversation;
-import com.chatapp.conversation.entity.ConversationBuilder;
-import com.chatapp.user.utils.EAuthRoles;
-import jakarta.persistence.*;
-
-import java.util.Set;
+import com.chatapp.user.enums.EAuthRoles;
 
 public class ChatUserBuilder {
     private Long id;

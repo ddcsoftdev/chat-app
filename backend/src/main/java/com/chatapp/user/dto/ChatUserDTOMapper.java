@@ -23,8 +23,8 @@ public class ChatUserDTOMapper implements Function<ChatUser, ChatUserDTO> {
                 chatUser.getLastName(),
                 chatUser.getNickname(),
                 chatUser.getEmail(),
-                chatUser.getRole()
-                //conversationDTOMapper.mapToDTOSet(chatUser.getConversations())
+                chatUser.getRole(),
+                conversationDTOMapper.mapToDTOSet(chatUser.getConversations())
         );
     }
 }

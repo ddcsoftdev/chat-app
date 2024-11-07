@@ -1,8 +1,9 @@
 package com.chatapp.user.controller;
 
-import com.chatapp.shared.jwt.JWTUtil;
+import com.chatapp.infraestructure.jwt.JWTUtil;
 import com.chatapp.user.dto.ChatUserDTO;
 import com.chatapp.user.dto.ChatUserRegistrationRequestDTO;
+import com.chatapp.user.dto.ChatUserUpdateRequestDTO;
 import com.chatapp.user.service.ChatUserService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +23,16 @@ public class ChatUserController {
         this.jwtUtil = jwtUtil;
     }
 
+    @GetMapping("")
+    public List<ChatUserDTO> getAllUsers() {
+        return chatUserService.getAllUsers();
+    }
+
+    @GetMapping("/{id}")
+    public ChatUserDTO getUserById(@PathVariable("id") Long id) {
+        return chatUserService.getUserById(id);
+    }
+
     @PostMapping("/register")
     ResponseEntity<?> registerUser(@RequestBody ChatUserRegistrationRequestDTO request){
         chatUserService.addCustomer(request);
@@ -31,13 +42,14 @@ public class ChatUserController {
                 .build();
     }
 
-    @GetMapping("")
-    public List<ChatUserDTO> getAllUsers() {
-        return chatUserService.getAllUsers();
+    @DeleteMapping("/{id}")
+    public void removeUserById(@PathVariable("id") Long id){
+        chatUserService.removeUserById(id);
     }
 
-    @GetMapping("/{id}")
-    public ChatUserDTO getUserById(@PathVariable("id") Long id) {
-        return chatUserService.getUserById(id);
+    @PutMapping("/{id}")
+    public void updateUserById(@PathVariable("id") Long id,
+                               @RequestBody ChatUserUpdateRequestDTO request){
+        chatUserService.updateUserById(id, request);
     }
 }

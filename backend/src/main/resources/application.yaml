@@ -11,7 +11,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-    show-sql: true
+    show-sql: false
 
 jwt:
   secret: "fGh9Jr4qX8i1Bv0nW3sR2kL5yT7pMv7z"

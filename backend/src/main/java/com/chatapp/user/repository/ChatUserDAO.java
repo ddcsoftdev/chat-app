@@ -11,6 +11,8 @@ public interface ChatUserDAO {
 
     Optional<ChatUser> selectUserById(Long id);
 
+    Optional<ChatUser> selectUserByEmail(String email);
+
     boolean existsUserWithEmail(String email);
 
     boolean existsUserWithId(Long id);
@@ -20,6 +22,4 @@ public interface ChatUserDAO {
     void deleteUser(Long id);
 
     void updateUser(ChatUser update);
-
-    Optional<ChatUser> selectUserByEmail(String email);
 }

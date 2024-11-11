@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
-@Repository("jpa")
+@Repository()
 public class ChatUserJPARepositoryAdapter implements ChatUserDAO{
     private final ChatUserRepository chatUserRepository;
 

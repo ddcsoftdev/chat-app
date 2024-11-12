@@ -1,7 +1,7 @@
 package com.chatapp.conversation.dto;
 
 import com.chatapp.message.dto.MessageDTO;
-import com.chatapp.user.dto.ChatUserDTO;
+import com.chatapp.user.dto.ChatUserNoConversationDTO;
 import java.lang.Long;
 import java.util.Set;
 import javax.annotation.processing.Generated;
@@ -10,7 +10,7 @@ import javax.annotation.processing.Generated;
 public class ConversationDTOBuilder {
   private Long id;
 
-  private Set<ChatUserDTO> users;
+  private Set<ChatUserNoConversationDTO> users;
 
   private Set<MessageDTO> messages;
 
@@ -23,7 +23,7 @@ public class ConversationDTOBuilder {
     return this;
   }
 
-  public ConversationDTOBuilder users(Set<ChatUserDTO> users) {
+  public ConversationDTOBuilder users(Set<ChatUserNoConversationDTO> users) {
     this.users = users;
     return this;
   }

@@ -6,19 +6,23 @@ import com.chatapp.message.dto.MessageDTOMapper;
 import com.chatapp.message.entity.Message;
 import com.chatapp.user.dto.ChatUserDTO;
 import com.chatapp.user.dto.ChatUserDTOMapper;
+import com.chatapp.user.dto.ChatUserNoConversationDTO;
+import com.chatapp.user.dto.ChatUserNoConversationDTOMapper;
 import com.chatapp.user.entity.ChatUser;
+import com.chatapp.user.entity.ChatUserBuilder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Service
 public class ConversationDTOMapper implements Function<Conversation, ConversationDTO> {
-    public final ChatUserDTOMapper chatUserDTOMapper;
+    public final ChatUserNoConversationDTOMapper chatUserDTOMapper;
     public final MessageDTOMapper messageDTOMapper;
 
-    public ConversationDTOMapper(ChatUserDTOMapper chatUserDTOMapper, MessageDTOMapper messageDTOMapper) {
+    public ConversationDTOMapper(ChatUserNoConversationDTOMapper chatUserDTOMapper, MessageDTOMapper messageDTOMapper) {
         this.chatUserDTOMapper = chatUserDTOMapper;
         this.messageDTOMapper = messageDTOMapper;
     }
@@ -38,8 +42,22 @@ public class ConversationDTOMapper implements Function<Conversation, Conversatio
     }
 
     public Conversation toConversation(ConversationDTO conversationDTO) {
+        Set<ChatUser> users = new HashSet<>();
+        conversationDTO.users().forEach(user -> {
+            ChatUser chatUser = new ChatUserBuilder()
+                    .id(user.id())
+                    .firstName(user.firstName())
+                    .lastName(user.lastName())
+                    .nickname(user.nickname())
+                    .email(user.email())
+                    .role(user.role())
+                    .build();
+            users.add(chatUser);
+        });
         return new Conversation(
-                conversationDTO.id()
+                conversationDTO.id(),
+                users,
+                new HashSet<>()
         );
     }
 
@@ -49,7 +67,7 @@ public class ConversationDTOMapper implements Function<Conversation, Conversatio
                 .collect(Collectors.toSet());
     }
 
-    private Set<ChatUserDTO> mapUsersDto(Set<ChatUser> users){
+    private Set<ChatUserNoConversationDTO> mapUsersDto(Set<ChatUser> users){
        return users.stream()
                 .map(chatUserDTOMapper)
                .collect(Collectors.toSet());

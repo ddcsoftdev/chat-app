@@ -43,6 +43,14 @@ public class Conversation {
     }
 
     public Conversation(Long id, Set<ChatUser> users, Set<Message> messages) {
+        this.id = id;
+        this.users = users;
+        this.messages = messages;
+    }
+
+    public Conversation(Set<ChatUser> users, Set<Message> messages) {
+        this.users = users;
+        this.messages = messages;
     }
 
     public void setId(Long id) {

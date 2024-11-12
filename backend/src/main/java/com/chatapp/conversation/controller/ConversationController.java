@@ -2,11 +2,12 @@ package com.chatapp.conversation.controller;
 
 
 import com.chatapp.conversation.dto.ConversationDTO;
+import com.chatapp.conversation.dto.ConversationRegistrationRequestDTO;
 import com.chatapp.conversation.service.ConversationService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.chatapp.message.dto.MessageDTO;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,5 +28,13 @@ public class ConversationController {
     @GetMapping("/{id}")
     public List<ConversationDTO> getAllConversationsWithUserId(@PathVariable Long id){
         return conversationService.getAllConversationsWithUserId(id);
+    }
+
+    @PostMapping("/create")
+    ResponseEntity<?> createConversation(@RequestBody ConversationRegistrationRequestDTO request){
+        conversationService.createConversation(request);
+        return ResponseEntity.ok()
+                .header(HttpHeaders.AUTHORIZATION, request.toString())
+                .build();
     }
 }

@@ -66,13 +66,13 @@ public class ChatUser implements UserDetails {
         this.conversations = new HashSet<>();
     }
 
-    public ChatUser(String firstName, String lastName, String nickname, String email, String password, String role, Set<Conversation> conversations) {
+    public ChatUser(String firstName, String lastName, String nickname, String email, String password, EAuthRoles role, Set<Conversation> conversations) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.nickname = nickname;
         this.email = email;
         this.password = password;
-        this.role = role;
+        this.role = role.toString();
         this.conversations = conversations;
     }
 

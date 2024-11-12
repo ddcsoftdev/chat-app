@@ -12,7 +12,9 @@ public class MessageDTOMapper implements Function<Message, MessageDTO> {
     @Override
     public MessageDTO apply(Message message) {
         return new MessageDTO(
-                message.getId()
+                message.getId(),
+                message.getContent(),
+                message.getConversation().getId()
         );
     }
 }

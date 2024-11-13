@@ -2,6 +2,7 @@ spring:
   application:
     name: chat-app
 
+
   datasource:
     url: jdbc:postgresql://localhost:5432/chat-db
     username: admin
@@ -15,3 +16,7 @@ spring:
 
 jwt:
   secret: "fGh9Jr4qX8i1Bv0nW3sR2kL5yT7pMv7z"
+
+app:
+  encryption:
+    secret-key: 3G9t6w6vR3Lz8sHZpO7pDf2LsrfKuO4t09lTVbl4y9U=

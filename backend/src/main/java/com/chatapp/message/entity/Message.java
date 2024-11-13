@@ -1,8 +1,12 @@
 package com.chatapp.message.entity;
 
 import com.chatapp.conversation.entity.Conversation;
+import com.chatapp.user.entity.ChatUser;
 import jakarta.persistence.*;
+import org.apache.commons.lang3.CharUtils;
 import org.jilt.Builder;
+
+import java.time.LocalDateTime;
 
 @Builder
 @Entity
@@ -26,18 +30,30 @@ public class Message {
     @JoinColumn(name = "conversation_id", nullable = false)
     private Conversation conversation;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private ChatUser user;
+
+    @Column(name = "posted_at", nullable = false)
+    private LocalDateTime postedAt;
+
+
     public Message() {
     }
 
-    public Message(Long id, String content, Conversation conversation) {
+    public Message(Long id, String content, Conversation conversation, ChatUser user, LocalDateTime postedAt) {
         this.id = id;
         this.content = content;
         this.conversation = conversation;
+        this.user = user;
+        this.postedAt = postedAt;
     }
 
-    public Message(String content, Conversation conversation) {
+    public Message(String content, Conversation conversation, ChatUser user, LocalDateTime postedAt) {
         this.content = content;
         this.conversation = conversation;
+        this.user = user;
+        this.postedAt = postedAt;
     }
 
     public void setId(Long id) {
@@ -62,5 +78,21 @@ public class Message {
 
     public void setConversation(Conversation conversation) {
         this.conversation = conversation;
+    }
+
+    public ChatUser getUser() {
+        return user;
+    }
+
+    public void setUser(ChatUser user) {
+        this.user = user;
+    }
+
+    public LocalDateTime getPostedAt() {
+        return postedAt;
+    }
+
+    public void setPostedAt(LocalDateTime postedAt) {
+        this.postedAt = postedAt;
     }
 }

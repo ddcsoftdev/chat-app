@@ -1,8 +1,10 @@
 package com.chatapp.message.entity;
 
 import com.chatapp.conversation.entity.Conversation;
+import com.chatapp.user.entity.ChatUser;
 import java.lang.Long;
 import java.lang.String;
+import java.time.LocalDateTime;
 import javax.annotation.processing.Generated;
 
 @Generated("Jilt-1.5")
@@ -12,6 +14,10 @@ public class MessageBuilder {
   private String content;
 
   private Conversation conversation;
+
+  private ChatUser user;
+
+  private LocalDateTime postedAt;
 
   public static MessageBuilder message() {
     return new MessageBuilder();
@@ -32,7 +38,17 @@ public class MessageBuilder {
     return this;
   }
 
+  public MessageBuilder user(ChatUser user) {
+    this.user = user;
+    return this;
+  }
+
+  public MessageBuilder postedAt(LocalDateTime postedAt) {
+    this.postedAt = postedAt;
+    return this;
+  }
+
   public Message build() {
-    return new Message(id, content, conversation);
+    return new Message(id, content, conversation, user, postedAt);
   }
 }

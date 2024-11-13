@@ -36,17 +36,20 @@ public class Message {
 
     @Column(name = "posted_at", nullable = false)
     private LocalDateTime postedAt;
+    @Column(name = "edited_at")
+    private LocalDateTime editedAt;
 
 
     public Message() {
     }
 
-    public Message(Long id, String content, Conversation conversation, ChatUser user, LocalDateTime postedAt) {
+    public Message(Long id, String content, Conversation conversation, ChatUser user, LocalDateTime postedAt, LocalDateTime editedAt) {
         this.id = id;
         this.content = content;
         this.conversation = conversation;
         this.user = user;
         this.postedAt = postedAt;
+        this.editedAt = editedAt;
     }
 
     public Message(String content, Conversation conversation, ChatUser user, LocalDateTime postedAt) {
@@ -54,6 +57,14 @@ public class Message {
         this.conversation = conversation;
         this.user = user;
         this.postedAt = postedAt;
+    }
+
+    public Message(String content, Conversation conversation, ChatUser user, LocalDateTime postedAt, LocalDateTime editedAt) {
+        this.content = content;
+        this.conversation = conversation;
+        this.user = user;
+        this.postedAt = postedAt;
+        this.editedAt = editedAt;
     }
 
     public void setId(Long id) {
@@ -94,5 +105,13 @@ public class Message {
 
     public void setPostedAt(LocalDateTime postedAt) {
         this.postedAt = postedAt;
+    }
+
+    public LocalDateTime getEditedAt() {
+        return editedAt;
+    }
+
+    public void setEditedAt(LocalDateTime editedAt) {
+        this.editedAt = editedAt;
     }
 }

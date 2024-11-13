@@ -12,6 +12,7 @@
 /Users/diegodemarco/Documents/Portfolio/chatroom/backend/src/main/java/com/chatapp/conversation/repository/ConversationJPARepositoryAdapter.java
 /Users/diegodemarco/Documents/Portfolio/chatroom/backend/src/main/java/com/chatapp/conversation/repository/ConversationRepository.java
 /Users/diegodemarco/Documents/Portfolio/chatroom/backend/src/main/java/com/chatapp/conversation/service/ConversationService.java
+/Users/diegodemarco/Documents/Portfolio/chatroom/backend/src/main/java/com/chatapp/infraestructure/encryption/EncryptionUtil.java
 /Users/diegodemarco/Documents/Portfolio/chatroom/backend/src/main/java/com/chatapp/infraestructure/exceptions/DefaultExceptionHandler.java
 /Users/diegodemarco/Documents/Portfolio/chatroom/backend/src/main/java/com/chatapp/infraestructure/exceptions/DelegatedAuthEntryPoint.java
 /Users/diegodemarco/Documents/Portfolio/chatroom/backend/src/main/java/com/chatapp/infraestructure/exceptions/ExceptionResponseDTO.java
@@ -27,6 +28,7 @@
 /Users/diegodemarco/Documents/Portfolio/chatroom/backend/src/main/java/com/chatapp/message/dto/MessageDTO.java
 /Users/diegodemarco/Documents/Portfolio/chatroom/backend/src/main/java/com/chatapp/message/dto/MessageDTOMapper.java
 /Users/diegodemarco/Documents/Portfolio/chatroom/backend/src/main/java/com/chatapp/message/dto/MessageRegistrationRequestDTO.java
+/Users/diegodemarco/Documents/Portfolio/chatroom/backend/src/main/java/com/chatapp/message/dto/MessageUpdateRequestDTO.java
 /Users/diegodemarco/Documents/Portfolio/chatroom/backend/src/main/java/com/chatapp/message/entity/Message.java
 /Users/diegodemarco/Documents/Portfolio/chatroom/backend/src/main/java/com/chatapp/message/repository/MessageDAO.java
 /Users/diegodemarco/Documents/Portfolio/chatroom/backend/src/main/java/com/chatapp/message/repository/MessageJPARepositoryAdapter.java

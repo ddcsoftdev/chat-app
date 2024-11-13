@@ -7,6 +7,7 @@ public record MessageDTO (
         String content,
         Long conversationId,
         Long userId,
-        LocalDateTime postedAt
+        LocalDateTime postedAt,
+        LocalDateTime editedAt
 ){
 }

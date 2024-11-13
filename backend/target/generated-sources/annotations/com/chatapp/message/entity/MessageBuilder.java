@@ -19,6 +19,8 @@ public class MessageBuilder {
 
   private LocalDateTime postedAt;
 
+  private LocalDateTime editedAt;
+
   public static MessageBuilder message() {
     return new MessageBuilder();
   }
@@ -48,7 +50,12 @@ public class MessageBuilder {
     return this;
   }
 
+  public MessageBuilder editedAt(LocalDateTime editedAt) {
+    this.editedAt = editedAt;
+    return this;
+  }
+
   public Message build() {
-    return new Message(id, content, conversation, user, postedAt);
+    return new Message(id, content, conversation, user, postedAt, editedAt);
   }
 }

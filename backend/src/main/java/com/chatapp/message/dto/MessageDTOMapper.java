@@ -29,7 +29,8 @@ public class MessageDTOMapper implements Function<Message, MessageDTO> {
                 decryptedContent,
                 message.getConversation().getId(),
                 message.getUser().getId(),
-                message.getPostedAt()
+                message.getPostedAt(),
+                message.getEditedAt()
         );
     }
 }

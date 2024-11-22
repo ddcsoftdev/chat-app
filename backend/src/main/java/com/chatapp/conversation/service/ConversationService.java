@@ -4,7 +4,6 @@ import com.chatapp.conversation.dto.ConversationDTO;
 import com.chatapp.conversation.dto.ConversationDTOMapper;
 import com.chatapp.conversation.dto.ConversationRegistrationRequestDTO;
 import com.chatapp.conversation.entity.Conversation;
-import com.chatapp.conversation.entity.ConversationBuilder;
 import com.chatapp.conversation.repository.ConversationJPARepositoryAdapter;
 import com.chatapp.infraestructure.exceptions.types.ResourceNotFoundException;
 import com.chatapp.user.dto.ChatUserDTO;
@@ -66,5 +65,15 @@ public class ConversationService {
                 new HashSet<>()
         );
         conversationRepository.insertConversation(conversation);
+    }
+
+    public ConversationDTO getConversationWithId(Long id) {
+        return conversationRepository.selectConversationById(id)
+                .stream()
+                .map(conversationDTOMapper)
+                .findFirst()
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "Conversation with id[%d] not found".formatted(id)
+                ));
     }
 }

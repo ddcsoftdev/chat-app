@@ -25,9 +25,14 @@ public class ConversationController {
         return conversationService.getAllConversations();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/user/{id}")
     public List<ConversationDTO> getAllConversationsWithUserId(@PathVariable Long id){
         return conversationService.getAllConversationsWithUserId(id);
+    }
+
+    @GetMapping("/{id}")
+    public ConversationDTO getConversationWithId(@PathVariable Long id){
+        return conversationService.getConversationWithId(id);
     }
 
     @PostMapping("/create")

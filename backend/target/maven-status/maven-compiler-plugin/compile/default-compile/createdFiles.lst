@@ -1,4 +1,3 @@
-com/chatapp/message/entity/MessageBuilder.class
 com/chatapp/message/entity/Message.class
 com/chatapp/auth/AuthenticationResponseDTO.class
 com/chatapp/infraestructure/exceptions/DefaultExceptionHandler.class
@@ -16,8 +15,6 @@ com/chatapp/user/dto/ChatUserNoConversationDTO.class
 com/chatapp/message/dto/MessageDTO.class
 com/chatapp/infraestructure/exceptions/types/RequestValidationException.class
 com/chatapp/user/dto/ChatUserNoConversationDTOMapper.class
-com/chatapp/user/dto/ChatUserDTOBuilder.class
-com/chatapp/conversation/dto/ConversationDTOBuilder.class
 com/chatapp/infraestructure/exceptions/types/DuplicateResourceException.class
 com/chatapp/user/enums/EAuthRoles.class
 com/chatapp/user/controller/ChatUserController.class
@@ -28,12 +25,10 @@ com/chatapp/infraestructure/encryption/EncryptionUtil.class
 com/chatapp/conversation/dto/ConversationDTOMapper.class
 com/chatapp/user/service/ChatUserService.class
 com/chatapp/user/dto/ChatUserDTOMapper.class
-com/chatapp/user/dto/ChatUserNoConversationDTOBuilder.class
 com/chatapp/conversation/repository/ConversationDAO.class
 com/chatapp/user/repository/ChatUserDAO.class
 com/chatapp/message/service/MessageService.class
 com/chatapp/infraestructure/exceptions/DelegatedAuthEntryPoint.class
-com/chatapp/conversation/entity/ConversationBuilder.class
 com/chatapp/user/dto/ChatUserUpdateRequestDTO.class
 com/chatapp/user/dto/ChatUserDTO.class
 com/chatapp/message/controller/MessageController.class

@@ -6,7 +6,6 @@ import org.jilt.Builder;
 
 import java.util.Set;
 
-@Builder
 public record ChatUserNoConversationDTO (
         Long id,
         String firstName,

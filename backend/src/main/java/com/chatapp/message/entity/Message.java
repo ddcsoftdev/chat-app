@@ -6,9 +6,9 @@ import jakarta.persistence.*;
 import org.apache.commons.lang3.CharUtils;
 import org.jilt.Builder;
 
+
 import java.time.LocalDateTime;
 
-@Builder
 @Entity
 @Table(name = "message")
 public class Message {

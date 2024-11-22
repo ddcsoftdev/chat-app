@@ -1,11 +1,14 @@
-<div class="card">
-    <div class="flex flex-column md:flex-row gap-5 m-[1px]">
-        <div class="flex-auto">
-            <p-scrollPanel [style]="{ width: '100%', height: '400px' }" styleClass="custombar1">
-                <ng-container *ngFor="let chat of conversation">
-                    <p [ngClass]="{ 'align-right': chat.owner === owner, 'align-left': chat.owner !== owner }">
-                        {{ chat.owner }}: {{ chat.message }}
-                      </p>
-                  </ng-container>
-            </p-scrollPanel>
-        </div>
+<p-scrollPanel [style]="{ width: '100%', height: '400px' }" styleClass="custombar1">
+    <ng-container *ngFor="let chat of messages">
+      <p
+        [ngClass]="{
+         
+        }"
+      >
+        <strong>{{ chat.user }}:</strong> {{ chat.content }}
+        <span class="timestamp">({{ chat.postedAt | date: 'short' }})</span>
+      </p>
+    </ng-container>
+  </p-scrollPanel>
+  
+  

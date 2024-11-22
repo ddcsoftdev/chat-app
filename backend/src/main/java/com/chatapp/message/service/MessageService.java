@@ -4,6 +4,7 @@ import com.chatapp.conversation.entity.Conversation;
 import com.chatapp.conversation.repository.ConversationJPARepositoryAdapter;
 import com.chatapp.infraestructure.encryption.EncryptionUtil;
 import com.chatapp.infraestructure.exceptions.types.DuplicateResourceException;
+import com.chatapp.infraestructure.exceptions.types.RequestValidationException;
 import com.chatapp.infraestructure.exceptions.types.ResourceNotFoundException;
 import com.chatapp.message.dto.MessageDTO;
 import com.chatapp.message.dto.MessageDTOMapper;
@@ -94,6 +95,20 @@ public class MessageService {
                 .orElseThrow(() -> new ResourceNotFoundException(
                         "Message with id[%d] not found".formatted(id)
                 ));
-        //TODO: FINISHED CHANGING LOGIC
+
+        if (request.content() != null &&
+                !request.content().equals(message.getContent())){
+            message.setContent(request.content());
+            anyChanges = true;
+        }
+
+        if (!anyChanges){
+            throw new RequestValidationException(
+                    "No changes detected for UPDATE request"
+            );
+        }
+
+        message.setEditedAt(LocalDateTime.now());
+        messageRepository.updateMessage(message);
     }
 }

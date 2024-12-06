@@ -2,13 +2,13 @@ import { ConversationModel } from './conversation.model';
 import { EAuthRolesModel } from './roles.model';
 
 export class UserModel {
-  private id: number;
-  private firstName: string;
-  private lastName: string;
-  private nickname: string;
-  private email: string;
-  private role: EAuthRolesModel;
-  private conversations: Set<ConversationModel>;
+  id: number;
+  firstName: string;
+  lastName: string;
+  nickname: string;
+  email: string;
+  role: EAuthRolesModel;
+  conversations: Set<ConversationModel>;
 
   constructor(
     id: number,
@@ -134,12 +134,12 @@ export class UserModelBuilder {
 }
 
 export class UserModelNoConversation {
-  private id: number;
-  private firstName: string;
-  private lastName: string;
-  private nickname: string;
-  private email: string;
-  private role: EAuthRolesModel;
+  id: number;
+  firstName: string;
+  lastName: string;
+  nickname: string;
+  email: string;
+  role: EAuthRolesModel;
 
   constructor(
     id: number,

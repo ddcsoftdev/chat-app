@@ -1,12 +1,12 @@
 import { LocalDateTime } from './date.model';
 
 export class MessageModel {
-  private id: number;
-  private content: string;
-  private conversationId: number;
-  private userId: number;
-  private postedAt: LocalDateTime;
-  private editedAt: LocalDateTime;
+  id: number;
+  content: string;
+  conversationId: number;
+  userId: number;
+  postedAt: LocalDateTime;
+  editedAt: LocalDateTime;
 
   constructor(
     id: number,

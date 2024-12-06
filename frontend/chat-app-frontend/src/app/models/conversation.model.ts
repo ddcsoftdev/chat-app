@@ -2,9 +2,10 @@ import { MessageModel } from './message.model';
 import { UserModelNoConversation } from './user.model';
 
 export class ConversationModel {
-  private id: number;
-  private users: Set<UserModelNoConversation>;
-  private messages: Set<MessageModel>;
+  id: number;
+  users: Set<UserModelNoConversation>;
+  messages: Set<MessageModel>;
+  isActive:boolean = true;//TODO: implement this in backend
 
   constructor(
     id: number,

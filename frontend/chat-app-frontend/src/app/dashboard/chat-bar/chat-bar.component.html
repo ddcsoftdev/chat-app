@@ -1,0 +1,14 @@
+<div class="flex-1 space-y-2 overflow-y-auto">
+  <div
+    *ngFor="let conv of conversations"
+    [class.bg-gray-700]="conv.isActive"
+    class="p-3 rounded-lg border border-gray-700 hover:bg-gray-800 hover:border-gray-600 hover:shadow-md cursor-pointer transition-all"
+  >
+    <div class="font-medium text-white">
+      {{ getOtherUsersInConversation(conv.users) }}
+    </div>
+    <div class="text-sm text-gray-400 truncate">
+      {{ getConversationLastMessage(conv.messages, conv.users) }}
+    </div>
+  </div>
+</div>

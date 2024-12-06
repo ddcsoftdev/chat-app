@@ -13,6 +13,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfigurationSource;
 
 /**
  * Configuration class for setting up the Spring Security filter chain.
@@ -25,6 +26,7 @@ public class SecurityFilterChainConfig{
     private final AuthenticationProvider authenticationProvider;
     private final JWTAuthenticationFilter jwtAuthenticationFilter;
     private final AuthenticationEntryPoint authenticationEntryPoint;
+    private final CorsConfigurationSource corsConfigurationSource;
 
     /**
      * Constructor for injecting dependencies.
@@ -32,13 +34,15 @@ public class SecurityFilterChainConfig{
      * @param authenticationProvider   the custom authentication provider
      * @param jwtAuthenticationFilter  the JWT authentication filter
      * @param authenticationEntryPoint
+     * @param corsConfigurationSource
      */
     public SecurityFilterChainConfig(AuthenticationProvider authenticationProvider,
                                      JWTAuthenticationFilter jwtAuthenticationFilter,
-                                     AuthenticationEntryPoint authenticationEntryPoint) {
+                                     AuthenticationEntryPoint authenticationEntryPoint, CorsConfigurationSource corsConfigurationSource) {
         this.authenticationProvider = authenticationProvider;
         this.jwtAuthenticationFilter = jwtAuthenticationFilter;
         this.authenticationEntryPoint = authenticationEntryPoint;
+        this.corsConfigurationSource = corsConfigurationSource;
     }
 
     /**
@@ -50,44 +54,24 @@ public class SecurityFilterChainConfig{
      */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        // Disable Cross-Site Request Forgery (CSRF) protection
-        // This is safe to disable as we are not using server-side rendered forms
-        http.csrf(AbstractHttpConfigurer::disable);
+        http.csrf(AbstractHttpConfigurer::disable)
+                .cors(cors -> cors.configurationSource(corsConfigurationSource))
+                .authorizeHttpRequests(req ->
+                        req.requestMatchers(HttpMethod.POST,
+                                        "/api/v1/user/register",
+                                        "/api/v1/auth/login")
+                                .permitAll()
+                                .anyRequest()
+                                .authenticated()
+                )
+                .sessionManagement(session ->
+                        session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                )
+                .authenticationProvider(authenticationProvider)
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+                .exceptionHandling(exceptionHandling ->
+                        exceptionHandling.authenticationEntryPoint(authenticationEntryPoint));
 
-        // Enable Cross-Origin Resource Sharing (CORS) with default settings
-        http.cors(Customizer.withDefaults());
-
-        // Configure authorization rules
-        http.authorizeHttpRequests(req -> {
-            // Allow unauthenticated POST requests to the specified endpoint
-            req.requestMatchers(HttpMethod.POST,
-                            "/api/v1/user/register",
-                            "/api/v1/auth/login")
-                    .permitAll()
-                    // Any other request must be authenticated
-                    .anyRequest()
-                    .authenticated();
-        });
-
-        // Set session management to stateless as we are using JWT for session management
-        http.sessionManagement(session -> session
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-        );
-
-        // Add the custom authentication provider
-        // This allows the use of custom authentication logic
-        http.authenticationProvider(authenticationProvider);
-
-        // Add the JWT authentication filter before the default UsernamePasswordAuthenticationFilter
-        // This allows us to handle JWT validation
-        http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
-
-        // Configure exception handling to use the custom authentication entry point
-        // This ensures proper response codes and messages for authentication errors
-        http.exceptionHandling(exceptionHandling ->
-                exceptionHandling.authenticationEntryPoint(authenticationEntryPoint));
-
-        // Return the configured SecurityFilterChain
         return http.build();
     }
 }

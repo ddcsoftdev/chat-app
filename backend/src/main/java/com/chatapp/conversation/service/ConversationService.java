@@ -42,7 +42,7 @@ public class ConversationService {
             throw new ResourceNotFoundException(
                     "No conversations because user with id[%d] not found".formatted(id));
         }
-        return conversationRepository.selectConversationByUserId(id)
+        return conversationRepository.selectAllConversationsByUserId(id)
                 .stream()
                 .map(conversationDTOMapper)
                 .collect(Collectors.toList());

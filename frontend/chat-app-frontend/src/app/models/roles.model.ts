@@ -1,4 +1,4 @@
-export enum EAuthRolesModel{
-    USER = 'USER',
-    ADMIN = 'ADMIN'
+export enum EAuthRolesModel {
+  USER = 'USER',
+  ADMIN = 'ADMIN',
 }

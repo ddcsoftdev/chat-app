@@ -104,4 +104,33 @@ export class ConversationService {
       })
     );
   }
+
+  /**
+   * GET conversation by ID
+   * 
+   * @param id id for the conversation
+   * @returns 
+   */
+  getConversationById(id: number): Observable<ConversationModel> {
+    const token = isPlatformBrowser(this.platformId)
+      ? localStorage.getItem('token')
+      : '';
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const url = `${this.baseUrl}/${id}`;
+    return this.http.get<ConversationModel>(url, { headers }).pipe(
+      map((response) => {
+        return new ConversationModel(
+          response.id,
+          response.users,
+          response.messages
+        );
+      }),
+      catchError((error) => {
+        console.error('Failed to get conversation:', error);
+        return throwError(
+          () => new Error(`Failed to get conversation with ID: ${id}`)
+        );
+      })
+    );
+  }
 }

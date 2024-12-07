@@ -3,7 +3,8 @@
     *ngFor="let conv of conversations"
     [class.bg-gray-700]="conv.isActive"
     class="p-3 rounded-lg border border-gray-700 hover:bg-gray-800 hover:border-gray-600 hover:shadow-md cursor-pointer transition-all"
-  >
+    (click)="onConversationClick(conv.id)"
+    >
     <div class="font-medium text-white">
       {{ getOtherUsersInConversation(conv.users) }}
     </div>

@@ -5,6 +5,7 @@ import { ConversationService } from '../services/conversation.service';
 import { UserModel, UserModelNoConversation } from '../../models/user.model';
 import { MessageModel } from '../../models/message.model';
 import { LocalDateTime } from '../../models/date.model';
+import { ActiveConversationService } from '../services/active-conversation.service';
 
 @Component({
   selector: 'app-chat-bar',
@@ -20,7 +21,9 @@ export class ChatBarComponent {
   errorMessage: string = '';
   platformId = inject(PLATFORM_ID);
 
-  constructor(private conversationService: ConversationService) {
+  constructor(
+    private conversationService: ConversationService,
+    private activeConversationService: ActiveConversationService) {
     if (isPlatformBrowser(this.platformId)) {
       const userData = localStorage.getItem('user');
       if (userData) {
@@ -35,8 +38,6 @@ export class ChatBarComponent {
     this.conversationService.getAllConversationsOfUser().subscribe({
       next: (conversations) => {
         this.conversations = conversations;
-        console.log(this.conversations);
-        console.log('Got conversations successfully');
       },
       error: (error) => {
         console.error('Failed to get conversations:', error);
@@ -73,5 +74,9 @@ export class ChatBarComponent {
     const senderNickname = sender?.nickname || 'Unknown User';
   
     return `${senderNickname}: ${lastMessage.content}`;
+  }
+
+  onConversationClick(conversationId: number){
+    this.activeConversationService.setActiveConversation(conversationId);
   }
 }

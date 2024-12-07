@@ -76,23 +76,29 @@ export class LocalDateTime {
   //compare to see which one is before
   compareTo(other: LocalDateTime): number {
     if (this.year !== other.year) {
-        return this.year - other.year;
+      return this.year - other.year;
     }
     if (this.month !== other.month) {
-        return this.month - other.month;
+      return this.month - other.month;
     }
     if (this.dayOfMonth !== other.dayOfMonth) {
-        return this.dayOfMonth - other.dayOfMonth;
+      return this.dayOfMonth - other.dayOfMonth;
     }
     if (this.hour !== other.hour) {
-        return this.hour - other.hour;
+      return this.hour - other.hour;
     }
     if (this.minute !== other.minute) {
-        return this.minute - other.minute;
+      return this.minute - other.minute;
     }
     if (this.second !== other.second) {
-        return this.second - other.second;
+      return this.second - other.second;
     }
     return this.nano - other.nano;
-}
+  }
+
+  getTimeHHMM(): string {
+    return `${String(this.hour).padStart(2, '0')}:${String(
+      this.minute
+    ).padStart(2, '0')}`;
+  }
 }

@@ -4,5 +4,6 @@ export const environment = {
     production: false,
     apiUrl: API_URL,
     loginUrl: `${API_URL}auth/login`,
-    conversationUrl: `${API_URL}conversation`
+    conversationUrl: `${API_URL}conversation`,
+    messageUrl: `${API_URL}message`
   };

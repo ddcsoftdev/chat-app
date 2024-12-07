@@ -112,9 +112,9 @@ export class MessageModelBuilder {
 }
 
 export class MessageRegistrationModel {
-  private content: string;
-  private conversationId: number;
-  private userId: number;
+  content: string;
+  conversationId: number;
+  userId: number;
 
   constructor(content: string, conversationId: number, userId: number) {
     this.content = content;

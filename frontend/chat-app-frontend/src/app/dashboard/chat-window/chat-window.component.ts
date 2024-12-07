@@ -8,6 +8,7 @@ import { LocalDateTime } from '../../models/date.model';
 import { UserModel, UserModelNoConversation } from '../../models/user.model';
 import { MessageModel } from '../../models/message.model';
 import { MessageService } from '../services/message.service';
+import { ChatUpdateService } from '../services/chat-update.service';
 
 @Component({
   selector: 'app-chat-window',
@@ -29,7 +30,8 @@ export class ChatWindowComponent implements AfterViewInit {
   constructor(
     private activeConversationService: ActiveConversationService,
     private conversationService: ConversationService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private chatUpdateService: ChatUpdateService
   ) {
     if (isPlatformBrowser(this.platformId)) {
       const userData = localStorage.getItem('user');
@@ -107,6 +109,7 @@ export class ChatWindowComponent implements AfterViewInit {
            this.newMessage = '';
            this.scrollToBottom();
            this.loadConversation(this.currentConversation!.id);
+           this.chatUpdateService.notifyNewMessage();
        },
        error: (error) => {
            console.error('Error sending message:', error);

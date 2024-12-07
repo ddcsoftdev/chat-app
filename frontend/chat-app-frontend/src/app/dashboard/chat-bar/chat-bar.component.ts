@@ -6,6 +6,8 @@ import { UserModel, UserModelNoConversation } from '../../models/user.model';
 import { MessageModel } from '../../models/message.model';
 import { LocalDateTime } from '../../models/date.model';
 import { ActiveConversationService } from '../services/active-conversation.service';
+import { send } from 'process';
+import { ChatUpdateService } from '../services/chat-update.service';
 
 @Component({
   selector: 'app-chat-bar',
@@ -23,7 +25,9 @@ export class ChatBarComponent {
 
   constructor(
     private conversationService: ConversationService,
-    private activeConversationService: ActiveConversationService) {
+    private activeConversationService: ActiveConversationService,
+    private chatUpdateService: ChatUpdateService
+  ) {
     if (isPlatformBrowser(this.platformId)) {
       const userData = localStorage.getItem('user');
       if (userData) {
@@ -31,6 +35,9 @@ export class ChatBarComponent {
       }
     }
     this.getAllConversations();
+    this.chatUpdateService.chatUpdated$.subscribe(() => {
+      this.getAllConversations();
+  });
   }
 
   getAllConversations(): void {
@@ -58,7 +65,10 @@ export class ChatBarComponent {
       .join(', ');
   }
 
-  getConversationLastMessage(messages: Set<MessageModel>, users: Set<UserModelNoConversation>): string {
+  getConversationLastMessage(
+    messages: Set<MessageModel>,
+    users: Set<UserModelNoConversation>
+  ): string {
     if (!messages || messages.size === 0) return 'No messages yet';
 
     const sortedMessages = Array.from(messages).sort((a, b) => {
@@ -69,14 +79,19 @@ export class ChatBarComponent {
 
     const lastMessage = sortedMessages[0];
     if (!lastMessage) return 'No messages yet';
-  
-    const sender = Array.from(users).find(user => user.id === lastMessage.userId);
-    const senderNickname = sender?.nickname || 'Unknown User';
-  
+
+    const sender = Array.from(users).find(
+      (user) => user.id === lastMessage.userId
+    );
+    let senderNickname = sender?.nickname || 'Unknown User';
+    if (sender && this.currentUser && sender.id == this.currentUser.id) {
+      senderNickname = 'You';
+    }
+
     return `${senderNickname}: ${lastMessage.content}`;
   }
 
-  onConversationClick(conversationId: number){
+  onConversationClick(conversationId: number) {
     this.activeConversationService.setActiveConversation(conversationId);
   }
 }

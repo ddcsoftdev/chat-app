@@ -1,15 +1,48 @@
 <div class="flex-1 space-y-2 overflow-y-auto">
-  <div
-    *ngFor="let conv of conversations"
-    [class.bg-gray-700]="conv.isActive"
-    class="p-3 rounded-lg border border-gray-700 hover:bg-gray-800 hover:border-gray-600 hover:shadow-md cursor-pointer transition-all"
-    (click)="onConversationClick(conv.id)"
-    >
-    <div class="font-medium text-white">
-      {{ getOtherUsersInConversation(conv.users) }}
-    </div>
-    <div class="text-sm text-gray-400 truncate">
-      {{ getConversationLastMessage(conv.messages, conv.users) }}
-    </div>
+  <!-- Title -->
+  <div class="px-3 py-2 text-lg font-semibold text-gray-200 border-b border-gray-700">
+    {{ currentMode === ChatBarMode.CONVERSATIONS ? 'Conversations' : 'New Chat' }}
   </div>
-</div>
+ 
+  <!-- Conversations Mode -->
+  <ng-container *ngIf="currentMode === ChatBarMode.CONVERSATIONS">
+    <div *ngFor="let conv of conversations" 
+         [class.bg-gray-700]="conv.isActive"
+         class="p-3 rounded-lg border border-gray-700 hover:bg-gray-800 hover:border-gray-600 hover:shadow-md cursor-pointer transition-all"
+         (click)="onConversationClick(conv.id)">
+      <div class="font-medium text-white">
+        {{ getOtherUsersInConversation(conv.users) }}
+      </div>
+      <div class="text-sm text-gray-400 truncate">
+        {{ getConversationLastMessage(conv.messages, conv.users) }}
+      </div>
+    </div>
+  </ng-container>
+ 
+  <!-- New Chat Mode -->
+  <ng-container *ngIf="currentMode === ChatBarMode.NEW_CHAT">
+    <div *ngFor="let user of users" 
+         class="p-3 rounded-lg border border-gray-700 hover:bg-gray-800 hover:border-gray-600 hover:shadow-md cursor-pointer transition-all"
+         (click)="createNewConversation(user)">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center">
+          {{ user.nickname.charAt(0).toUpperCase() }}
+        </div>
+        <div>
+          <div class="font-medium text-white">{{ user.nickname }}</div>
+          <div class="text-sm text-gray-400">{{ user.email }}</div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+ 
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="flex items-center justify-center p-4">
+    <span class="text-gray-400">Loading...</span>
+  </div>
+ 
+  <!-- Error State -->
+  <div *ngIf="errorMessage" class="text-red-400 p-4">
+    {{ errorMessage }}
+  </div>
+ </div>

@@ -133,4 +133,28 @@ export class ConversationService {
       })
     );
   }
+
+  /**
+   * POST create new conversation between users
+   */
+  createNewConversation(userIds: number[]): Observable<void> {
+    const token = isPlatformBrowser(this.platformId)
+      ? localStorage.getItem('token')
+      : '';
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    
+    const users = userIds.map(id => ({ id: id }));
+    const body = { users: users };
+    
+    const url = `${this.baseUrl}/create`;
+    return this.http.post<void>(url, body, { headers }).pipe(
+        catchError((error) => {
+            console.error('Failed to create conversation:', error);
+            return throwError(
+                () => new Error(`Failed to create conversation with users: ${userIds.join(', ')}`)
+            );
+        })
+    );
+ }
 }
+

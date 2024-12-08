@@ -3,17 +3,19 @@ import { UserService } from '../services/user.service';
 import { UserModel, UserModelNoConversation } from '../../models/user.model';
 import { ChatBarMode, ChatBarModeService } from '../services/chat-bar-mode.service';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { UserSettingsComponent } from "../user-settings/user-settings.component";
 
 @Component({
   selector: 'app-chat-bar-header',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, UserSettingsComponent],
   templateUrl: './chat-bar-header.component.html',
   styleUrl: './chat-bar-header.component.scss'
 })
 export class ChatBarHeaderComponent {
   currentMode: ChatBarMode = ChatBarMode.CONVERSATIONS;
   currentUser: UserModel | null = null;
+  isSettingsOpen: boolean = false;
   platformId = inject(PLATFORM_ID);
   
   ChatBarMode = ChatBarMode; //expose to html
@@ -36,6 +38,9 @@ export class ChatBarHeaderComponent {
           ? ChatBarMode.NEW_CHAT 
           : ChatBarMode.CONVERSATIONS;
       this.chatBarModeService.changeMode(newMode);
-      
+  }
+
+  toggleSettings() {
+    this.isSettingsOpen = !this.isSettingsOpen;
   }
 }

@@ -14,7 +14,7 @@
         {{ getOtherUsersInConversation(conv.users) }}
       </div>
       <div class="text-sm text-gray-400 truncate">
-        {{ getConversationLastMessage(conv.messages, conv.users) }}
+        {{ formatLastConversationMessage(conv.messages, conv.users) }}
       </div>
     </div>
   </ng-container>

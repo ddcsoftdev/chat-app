@@ -200,9 +200,11 @@ private getLatestMessage(messages: MessageModel[]): MessageModel {
     this.userService.getAllUsersNoConversationModel().subscribe({
       next: (users) => {
         if (this.currentUser) {
-          this.users = new Set(
-            Array.from(users).filter((user) => user.id !== this.currentUser!.id)
-          );
+          const sortedUsers = Array.from(users)
+           .filter(user => user.id !== this.currentUser!.id)
+           .sort((a, b) => a.nickname.localeCompare(b.nickname));
+           
+         this.users = new Set(sortedUsers);
         } else {
           this.users = users;
         }

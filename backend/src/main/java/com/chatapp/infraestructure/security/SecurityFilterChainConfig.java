@@ -61,6 +61,8 @@ public class SecurityFilterChainConfig{
                                         "/api/v1/user/register",
                                         "/api/v1/auth/login")
                                 .permitAll()
+                                .requestMatchers("/ws/**", "/topic/**", "/app/**")
+                                .permitAll()
                                 .anyRequest()
                                 .authenticated()
                 )

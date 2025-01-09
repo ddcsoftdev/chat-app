@@ -20,3 +20,8 @@ jwt:
 app:
   encryption:
     secret-key: 3G9t6w6vR3Lz8sHZpO7pDf2LsrfKuO4t09lTVbl4y9U=
+
+#logging:
+#  level:
+#    org.springframework.messaging: DEBUG
+#    org.springframework.web.socket: DEBUG

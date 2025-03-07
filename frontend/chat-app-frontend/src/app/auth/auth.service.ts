@@ -1,16 +1,17 @@
 import { inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { BehaviorSubject, catchError, Observable, tap, throwError } from 'rxjs';
-import { environment } from '../environments/environment';
+import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { AuthLoginResponse } from '../models/auth.model';
-import { UserModel } from '../models/user.model';
+import { UserModel, UserRegistrationModel } from '../models/user.model';
 import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   private readonly loginUrl = environment.loginUrl;
+  private readonly registerUrl = environment.registerUrl;
   private platformId = inject(PLATFORM_ID);
 
   private isAuthenticated = new BehaviorSubject<boolean>(false);
@@ -20,7 +21,7 @@ export class AuthService {
   currentUser$ = this.currentUser.asObservable();
 
   constructor(private http: HttpClient) {
-      //check if user is already logged in
+    //check if user is already logged in
     if (isPlatformBrowser(this.platformId)) {
       const token = localStorage.getItem('token');
       if (token) {
@@ -34,9 +35,10 @@ export class AuthService {
   }
 
   login(email: string, password: string): Observable<AuthLoginResponse> {
-    return this.http.post<AuthLoginResponse>(`${this.loginUrl}`, { email, password })
+    return this.http
+      .post<AuthLoginResponse>(`${this.loginUrl}`, { email, password })
       .pipe(
-        tap(response => {
+        tap((response) => {
           //store token and user in localStorage
           if (isPlatformBrowser(this.platformId)) {
             localStorage.setItem('token', response.token);
@@ -45,11 +47,31 @@ export class AuthService {
           this.isAuthenticated.next(true);
           this.currentUser.next(response.chatUserDTO);
         }),
-        catchError(error => {
+        catchError((error) => {
           console.error('Login failed:', error);
           return throwError(() => new Error(`Login for user ${email} failed.`));
         })
       );
+  }
+
+  register(userDetails: UserRegistrationModel) {
+    return this.http
+      .post<AuthLoginResponse>(`${this.registerUrl}`, {
+        firstName: userDetails.getFirstName(),
+        lastName: userDetails.getLastName(),
+        nickname: userDetails.getNickname(),
+        email: userDetails.getEmail(),
+        password: userDetails.getPassword(),
+        role: userDetails.getRole(),
+      })
+      .pipe(tap((response) => {
+        return response;
+      }),
+      catchError((error) => {
+        console.error('Registration failed:', error);
+        return throwError(() => new Error(`Registration error user ${userDetails.getEmail()} failed.`));
+      })
+    );
   }
 
   logout() {
@@ -68,7 +90,7 @@ export class AuthService {
     return null;
   }
 
-  getUser(): UserModel | null{
+  getUser(): UserModel | null {
     if (isPlatformBrowser(this.platformId)) {
       const userData = localStorage.getItem('user');
       return userData ? JSON.parse(userData) : null;
@@ -76,14 +98,14 @@ export class AuthService {
     return null;
   }
 
-    isLoggedIn(): boolean {
-      return this.isAuthenticated.getValue();
+  isLoggedIn(): boolean {
+    return this.isAuthenticated.getValue();
+  }
+
+  updateUser(user: UserModel): void {
+    this.currentUser.next(user);
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem('user', JSON.stringify(user));
     }
-  
-    updateUser(user: UserModel): void {
-      this.currentUser.next(user);
-      if (isPlatformBrowser(this.platformId)) {
-        localStorage.setItem('user', JSON.stringify(user));
-      }
-    }
+  }
 }

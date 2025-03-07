@@ -1,9 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { Router, RouterLink, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { CommonModule } from '@angular/common';
-import { response } from 'express';
 
 @Component({
   selector: 'app-login',
@@ -11,15 +10,17 @@ import { response } from 'express';
   imports: [CommonModule, ReactiveFormsModule, RouterLink],
   templateUrl: './login.component.html'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   errorMessage: string = '';
   isLoading: boolean = false;
+  registrationSuccess: boolean = false;
 
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -27,10 +28,19 @@ export class LoginComponent {
     });
   }
 
+  ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      if (params['registered'] === 'true') {
+        this.registrationSuccess = true;
+      }
+    });
+  }
+
   onSubmit() {
     if (this.loginForm.valid) {
       this.isLoading = true;
       this.errorMessage = '';
+      this.registrationSuccess = false;
 
       const { email, password } = this.loginForm.value;
       this.authService.login(email, password).subscribe({
@@ -48,21 +58,19 @@ export class LoginComponent {
         }
       });
     } else {
-      //show validation errors on form
       this.markFormGroupTouched(this.loginForm);
     }
   }
 
-    //helper show validation errors
-    private markFormGroupTouched(formGroup: FormGroup) {
-      Object.values(formGroup.controls).forEach(control => {
-        control.markAsTouched();
-        if (control instanceof FormGroup) {
-          this.markFormGroupTouched(control);
-        }
-      });
-    }
+  private markFormGroupTouched(formGroup: FormGroup) {
+    Object.values(formGroup.controls).forEach(control => {
+      control.markAsTouched();
+      if (control instanceof FormGroup) {
+        this.markFormGroupTouched(control);
+      }
+    });
+  }
   
-    get email() { return this.loginForm.get('email'); }
-    get password() { return this.loginForm.get('password'); }
+  get email() { return this.loginForm.get('email'); }
+  get password() { return this.loginForm.get('password'); }
 }

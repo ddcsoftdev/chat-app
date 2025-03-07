@@ -252,6 +252,7 @@ export class UserRegistrationModel {
   private lastName: string;
   private nickname: string;
   private email: string;
+  private password: string;
   private role: EAuthRolesModel;
 
   constructor(
@@ -259,12 +260,14 @@ export class UserRegistrationModel {
     lastName: string,
     nickname: string,
     email: string,
+    password: string,
     role: EAuthRolesModel
   ) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.nickname = nickname;
     this.email = email;
+    this.password = password;
     this.role = role;
   }
 
@@ -280,6 +283,9 @@ export class UserRegistrationModel {
   getEmail(): string {
     return this.email;
   }
+  getPassword(): string {
+    return this.password;
+  }
   getRole(): EAuthRolesModel {
     return this.role;
   }
@@ -290,6 +296,7 @@ export class UserRegistrationModelBuilder {
   private lastName!: string;
   private nickname!: string;
   private email!: string;
+  private password!: string;
   private role!: EAuthRolesModel;
 
   setFirstName(firstName: string): UserRegistrationModelBuilder {
@@ -312,6 +319,11 @@ export class UserRegistrationModelBuilder {
     return this;
   }
 
+  setPassword(password: string): UserRegistrationModelBuilder {
+    this.password = password;
+    return this;
+  }
+
   setRole(role: EAuthRolesModel): UserRegistrationModelBuilder {
     this.role = role;
     return this;
@@ -325,6 +337,7 @@ export class UserRegistrationModelBuilder {
       this.lastName,
       this.nickname,
       this.email,
+      this.password,
       this.role
     );
   }
@@ -334,6 +347,7 @@ export class UserRegistrationModelBuilder {
     if (!this.lastName) throw new Error('Last name is required');
     if (!this.nickname) throw new Error('Nickname is required');
     if (!this.email) throw new Error('Email is required');
+    if (!this.password) throw new Error('Password is required');
     if (!this.role) throw new Error('Role is required');
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

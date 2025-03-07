@@ -65,35 +65,50 @@ export class ChatBarComponent {
     });
   }
 
-  getAllConversations(loadLastConversation: boolean = false): void {
+  getAllConversations(
+    loadLastConversation: boolean = false,
+    loadWithCreatedAt: boolean = false
+  ): void {
     this.isLoading = true;
     this.conversationService.getAllConversationsOfUser().subscribe({
       next: (conversations) => {
         //sort conversations so recent are on top
-        const sortedConversations = Array.from(conversations).sort((a, b) => {
-          const aMessages = Array.from(a.messages);
-          const bMessages = Array.from(b.messages);
-          
-          if (aMessages.length === 0 && bMessages.length === 0) return 0;
-          if (aMessages.length === 0) return 1;
-          if (bMessages.length === 0) return -1;
+        const sortedConversations = loadWithCreatedAt
+          ? conversations
+          : Array.from(conversations).sort((a, b) => {
+              const aMessages = Array.from(a.messages);
+              const bMessages = Array.from(b.messages);
 
-          const aLatestMessage = this.getLatestMessage(aMessages);
-          const bLatestMessage = this.getLatestMessage(bMessages);
-          
-          const dateA = LocalDateTime.parse(aLatestMessage.postedAt.toString());
-          const dateB = LocalDateTime.parse(bLatestMessage.postedAt.toString());
-          
-          return dateB.compareTo(dateA);
-        });
+              if (aMessages.length === 0 && bMessages.length === 0) return 0;
+              if (aMessages.length === 0) return 1;
+              if (bMessages.length === 0) return -1;
+
+              const aLatestMessage = this.getLatestMessage(aMessages);
+              const bLatestMessage = this.getLatestMessage(bMessages);
+
+              const dateA = LocalDateTime.parse(
+                aLatestMessage.postedAt.toString()
+              );
+              const dateB = LocalDateTime.parse(
+                bLatestMessage.postedAt.toString()
+              );
+
+              return dateB.compareTo(dateA);
+            });
 
         this.conversations = new Set(sortedConversations);
 
         if (loadLastConversation) {
           if (this.conversations.size > 0) {
-            const lastConversation = Array.from(this.conversations.values()).at(0); // Get first (most recent) conversation
+            const lastConversation = loadWithCreatedAt
+              ? Array.from(this.conversations.values()).at(
+                  this.conversations.size - 1
+                )
+              : Array.from(this.conversations.values()).at(0);
             if (lastConversation) {
-              this.activeConversationService.setActiveConversation(lastConversation.id);
+              this.activeConversationService.setActiveConversation(
+                lastConversation.id
+              );
             }
           }
         } else {
@@ -116,15 +131,15 @@ export class ChatBarComponent {
         this.isLoading = false;
       },
     });
-}
+  }
 
-private getLatestMessage(messages: MessageModel[]): MessageModel {
+  private getLatestMessage(messages: MessageModel[]): MessageModel {
     return messages.sort((a, b) => {
-        const dateA = LocalDateTime.parse(a.postedAt.toString());
-        const dateB = LocalDateTime.parse(b.postedAt.toString());
-        return dateB.compareTo(dateA);
+      const dateA = LocalDateTime.parse(a.postedAt.toString());
+      const dateB = LocalDateTime.parse(b.postedAt.toString());
+      return dateB.compareTo(dateA);
     })[0];
-}
+  }
 
   getOtherUsersInConversation(users: Set<UserModelNoConversation>): string {
     if (this.currentUser == null) return '';
@@ -140,7 +155,7 @@ private getLatestMessage(messages: MessageModel[]): MessageModel {
     users: Set<UserModelNoConversation>
   ): string {
     if (!messages || messages.size === 0) return 'No messages yet';
-    const lastMessage = this.getLatestMessage(Array.from(messages))
+    const lastMessage = this.getLatestMessage(Array.from(messages));
     if (!lastMessage) return 'No messages yet';
 
     const sender = Array.from(users).find(
@@ -186,7 +201,7 @@ private getLatestMessage(messages: MessageModel[]): MessageModel {
     this.conversationService.createNewConversation(userIds).subscribe({
       next: () => {
         this.chatBarModeService.changeMode(ChatBarMode.CONVERSATIONS);
-        this.getAllConversations(true);
+        this.getAllConversations(true, true);
       },
       error: (error) => {
         console.error('Error creating conversation:', error);
@@ -201,10 +216,10 @@ private getLatestMessage(messages: MessageModel[]): MessageModel {
       next: (users) => {
         if (this.currentUser) {
           const sortedUsers = Array.from(users)
-           .filter(user => user.id !== this.currentUser!.id)
-           .sort((a, b) => a.nickname.localeCompare(b.nickname));
-           
-         this.users = new Set(sortedUsers);
+            .filter((user) => user.id !== this.currentUser!.id)
+            .sort((a, b) => a.nickname.localeCompare(b.nickname));
+
+          this.users = new Set(sortedUsers);
         } else {
           this.users = users;
         }

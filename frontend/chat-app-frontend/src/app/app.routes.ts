@@ -8,6 +8,10 @@ export const routes: Routes = [
         pathMatch: 'full'
       },
       {
+        path: 'register',
+        loadComponent: () => import('./auth/register/register.component').then(m => m.RegisterComponent)
+      },
+      {
         path: '',
         loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
       },

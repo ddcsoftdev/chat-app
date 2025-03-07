@@ -1,5 +1,5 @@
 import { inject, Injectable, PLATFORM_ID } from '@angular/core';
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ConversationModel } from '../../models/conversation.model';
 import { catchError, map, Observable, switchMap, throwError } from 'rxjs';
